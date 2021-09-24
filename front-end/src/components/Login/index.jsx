@@ -1,10 +1,16 @@
 import React from 'react'
-import { Main } from './LoginElement'
+import { Main, Container } from './LoginElement'
+import { FormComponent } from '../Form'
 
 export const LayoutLoginComponent = () => {
   return (
     <Main>
-      <h1> Main </h1>
+      <Container>
+        <img src='images/logo.png' alt='Logo' fluid width='500px' />
+      </Container>
+      <Container>
+        <FormComponent />
+      </Container>
     </Main>
   )
 }
