@@ -2,7 +2,7 @@ import { Box, Flex, SimpleGrid } from '@chakra-ui/react'
 import { Feed } from '../components/Feed'
 import { Header } from '../components/Header'
 import { Sidebar } from '../components/Sidebar'
-import { TagBar } from '../components/TagBar'
+import { TagBar } from '../components/Tagbar'
 
 export default function Home() {
   return (
