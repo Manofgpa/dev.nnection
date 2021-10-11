@@ -9,12 +9,10 @@ export default function Home() {
       <Flex direction='column' h='100vh'>
         <Header />
 
-        <Flex w='100%' maxWidth={1480}>
+        <Flex w='100%' mx='auto' maxWidth={1480} flex='1'>
           <Sidebar />
 
-          <SimpleGrid flex='1' gap='4' minChildWidth='320px' align='flex-start'>
-            <Box p='8' bg='gray.100'></Box>
-          </SimpleGrid>
+          <Box flex='1'>Content</Box>
 
           <TagBar />
         </Flex>

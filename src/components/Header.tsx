@@ -7,6 +7,7 @@ import {
   HStack,
   Box,
   Avatar,
+  Button,
 } from '@chakra-ui/react'
 import { RiSearchLine } from 'react-icons/ri'
 import {
@@ -60,16 +61,21 @@ export const Header = () => {
           color='green.800'
           borderRightWidth={1}
           borderColor='gray.700'>
-          <Icon as={MdOutlineNotificationsActive} fontSize='50' />
-          <Icon as={MdOutlineChatBubbleOutline} fontSize='50' />
-          <Icon as={AiOutlineUsergroupAdd} fontSize='50' />
+          <Button bg='none' _hover={{ color: 'none' }}>
+            <Icon as={MdOutlineNotificationsActive} fontSize='50' />
+          </Button>
+          <Button bg='none' _hover={{ color: 'none' }}>
+            <Icon as={MdOutlineChatBubbleOutline} fontSize='50' />
+          </Button>
+          <Button bg='none' _hover={{ color: 'none' }}>
+            <Icon as={AiOutlineUsergroupAdd} fontSize='50' />
+          </Button>
         </HStack>
         <Flex align='center'>
           <Box mr='4' textAlign='right'>
             <Text>Felipe Mano</Text>
             <Text fontSize='small'>manofgpa@gmail.com</Text>
           </Box>
-
           <Avatar
             size='md'
             name='Felipe Mano'
