@@ -10,42 +10,42 @@ import {
 
 export const Sidebar = () => {
   return (
-    <Box as='aside' w='64' mr='8' bg='green.500'>
+    <Box as='aside' w='48' bg='green.500'>
       <Stack spacing='12' align='flex-start'>
-        <Box color='green.50'>
-          <Stack spacing='4' mt='8' align='stretch'>
+        <Box color='green.50' ml='4'>
+          <Stack spacing='4' mt='8' align='stretch' fontSize='20'>
             <Link display='flex' align='center'>
-              <Icon as={FiHome} color='gray.500' fontSize='20' />
+              <Icon as={FiHome} color='gray.500' alignSelf='center' />
               <Text ml='4' fontWeight='medium'>
                 Home
               </Text>
             </Link>
             <Link display='flex' align='center'>
-              <Icon as={FiSettings} color='gray.500' fontSize='20' />
+              <Icon as={FiSettings} color='gray.500' alignSelf='center' />
               <Text ml='4' fontWeight='medium'>
                 Projects
               </Text>
             </Link>
             <Link display='flex' align='center'>
-              <Icon as={FiHeart} color='gray.500' fontSize='20' />
+              <Icon as={FiHeart} color='gray.500' alignSelf='center' />
               <Text ml='4' fontWeight='medium'>
                 Friends
               </Text>
             </Link>
             <Link display='flex' align='center'>
-              <Icon as={FiBriefcase} color='gray.500' fontSize='20' />
+              <Icon as={FiBriefcase} color='gray.500' alignSelf='center' />
               <Text ml='4' fontWeight='medium'>
                 Listings
               </Text>
             </Link>
             <Link display='flex' align='center'>
-              <Icon as={FiUsers} color='gray.500' fontSize='20' />
+              <Icon as={FiUsers} color='gray.500' alignSelf='center' />
               <Text ml='4' fontWeight='medium'>
                 Groups
               </Text>
             </Link>
             <Link display='flex' align='center'>
-              <Icon as={FiHash} color='gray.500' fontSize='20' />
+              <Icon as={FiHash} color='gray.500' alignSelf='center' />
               <Text ml='4' fontWeight='medium'>
                 Tags
               </Text>

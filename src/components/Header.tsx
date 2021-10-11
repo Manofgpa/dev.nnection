@@ -23,9 +23,9 @@ export const Header = () => {
       maxWidth={1480}
       h='20'
       mx='auto'
-      mt='4'
-      px='6'
-      align='center'>
+      px='4'
+      align='center'
+      bg='white'>
       <Image src='small-logo.png' width={200} />
 
       <Flex
