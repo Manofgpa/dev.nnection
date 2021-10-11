@@ -28,7 +28,7 @@ export const Header = () => {
       px='4'
       align='center'
       bg='white'>
-      <Image src='small-logo.png' width={200} />
+      <Image src='/small-logo.png' width={200} />
 
       <Flex
         as='label'
