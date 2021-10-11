@@ -24,6 +24,7 @@ export default function SignIn() {
             type='submit'
             mt='6'
             bgColor='#030301'
+            colorScheme='green'
             size='lg'
             borderRadius={20}
             _hover={{ bg: 'green.500' }}>
