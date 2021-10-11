@@ -1,4 +1,4 @@
-import { Box, Stack, Text, Flex, Icon, Link } from '@chakra-ui/react'
+import { Box, Stack, Text, Icon, Link } from '@chakra-ui/react'
 import {
   FiHome,
   FiHeart,
@@ -21,7 +21,7 @@ export const Sidebar = () => {
       <Stack spacing='12'>
         <Box color='green.50' ml='4'>
           <Stack spacing='4' mt='8' fontSize='20'>
-            <Link display='flex' align='center'>
+            <Link to='/' display='flex' align='center'>
               <Icon as={FiHome} color='gray.500' alignSelf='center' />
               <Text ml='4' fontWeight='medium'>
                 Home
