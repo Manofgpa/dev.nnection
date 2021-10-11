@@ -51,6 +51,7 @@ export const Post = ({
         <Box ml='auto'>
           {tags.map(tag => (
             <Link
+              key={tag}
               mr='2'
               mt='2'
               bg='gray.900'
