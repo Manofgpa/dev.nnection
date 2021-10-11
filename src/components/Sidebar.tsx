@@ -10,7 +10,14 @@ import {
 
 export const Sidebar = () => {
   return (
-    <Box as='aside' w='20%' bg='green.500' position='fixed' top='20' left='0'>
+    <Box
+      as='aside'
+      w='20%'
+      bg='green.500'
+      position='fixed'
+      top='20'
+      left='0'
+      h='100vh'>
       <Stack spacing='12'>
         <Box color='green.50' ml='4'>
           <Stack spacing='4' mt='8' fontSize='20'>

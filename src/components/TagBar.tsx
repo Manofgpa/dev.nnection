@@ -2,7 +2,14 @@ import { Box, Stack, Text, Divider, Link } from '@chakra-ui/react'
 
 export const TagBar = () => {
   return (
-    <Box as='aside' bg='gray.200' w='20%' position='fixed' right='0' top='20'>
+    <Box
+      as='aside'
+      bg='gray.200'
+      w='20%'
+      position='fixed'
+      right='0'
+      top='20'
+      h='100vh'>
       <Stack spacing='4' align='center'>
         <Box w='90%' bg='#FFFFFF' mt='5' borderRadius={10}>
           <Stack spacing='4' mt='4' align='stretch' fontSize='20'>

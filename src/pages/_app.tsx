@@ -4,7 +4,6 @@ import { theme } from '../styles/theme'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    // TODO Remover erro
     <ChakraProvider theme={theme}>
       <Component {...pageProps} />
     </ChakraProvider>
