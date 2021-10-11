@@ -51,28 +51,6 @@ export const TagBar = () => {
       h='100vh'>
       <Stack spacing='4' align='center'>
         <TagbarPostSection sections={sections} />
-        <Box w='90%' bg='#FFFFFF' m='auto' mt='5' borderRadius={10}>
-          <Stack spacing='4' mt='4' align='stretch' fontSize='20'>
-            <Box p='2'>
-              <Link>
-                <Text fontWeight='medium'>#javascript</Text>
-              </Link>
-            </Box>
-            <Divider />
-            <TagbarPost title='Best JS libraries' author='Ailton Rafael' />
-            <Divider />
-            <TagbarPost
-              title='Have you tried Typescript'
-              author='Liniquer Silva'
-            />
-            <Divider />
-            <TagbarPost
-              title='Improve your JS skills with these tips'
-              author='Roberta Camilo'
-            />
-            <Divider />
-          </Stack>
-        </Box>
       </Stack>
     </Box>
   )

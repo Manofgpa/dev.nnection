@@ -17,13 +17,13 @@ export const NotificationsNav = () => {
       borderRightWidth={1}
       borderColor='gray.700'>
       <Button bg='none' _hover={{ color: 'none' }}>
-        <Icon as={MdOutlineNotificationsActive} fontSize='40' />
+        <Icon as={MdOutlineNotificationsActive} fontSize='35' />
       </Button>
       <Button bg='none' _hover={{ color: 'none' }}>
-        <Icon as={MdOutlineChatBubbleOutline} fontSize='40' />
+        <Icon as={MdOutlineChatBubbleOutline} fontSize='35' />
       </Button>
       <Button bg='none' _hover={{ color: 'none' }}>
-        <Icon as={AiOutlineUsergroupAdd} fontSize='40' />
+        <Icon as={AiOutlineUsergroupAdd} fontSize='35' />
       </Button>
     </HStack>
   )
