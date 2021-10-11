@@ -6,8 +6,6 @@ import {
   Stack,
   HStack,
   Text,
-  Image,
-  Divider,
   Link,
 } from '@chakra-ui/react'
 import { Post } from './Post'

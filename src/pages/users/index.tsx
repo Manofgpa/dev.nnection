@@ -36,7 +36,7 @@ export default function UserList() {
               fontSize='md'
               colorScheme='green'
               leftIcon={<Icon as={RiAddLine} />}>
-              Novo usuario
+              Novo usuário
             </Button>
           </Flex>
           <Table colorScheme='blackAlpha'>
@@ -75,9 +75,56 @@ export default function UserList() {
                   </Button>
                 </Td>
               </Tr>
+              <Tr>
+                <Td px='6'>
+                  <Checkbox colorScheme='green' />
+                </Td>
+                <Td>
+                  <Box>
+                    <Text fontWeight='bold'>Felipe Mano</Text>
+                    <Text fontSize='small' color='gray.300'>
+                      manofgpa@gmail.com
+                    </Text>
+                  </Box>
+                </Td>
+                <Td>10 de Outubro, 2021</Td>
+                <Td>
+                  <Button
+                    as='a'
+                    size='md'
+                    fontSize='md'
+                    colorScheme='orange'
+                    leftIcon={<Icon as={RiPencilLine} />}>
+                    Editar
+                  </Button>
+                </Td>
+              </Tr>
+              <Tr>
+                <Td px='6'>
+                  <Checkbox colorScheme='green' />
+                </Td>
+                <Td>
+                  <Box>
+                    <Text fontWeight='bold'>Felipe Mano</Text>
+                    <Text fontSize='small' color='gray.300'>
+                      manofgpa@gmail.com
+                    </Text>
+                  </Box>
+                </Td>
+                <Td>10 de Outubro, 2021</Td>
+                <Td>
+                  <Button
+                    as='a'
+                    size='md'
+                    fontSize='md'
+                    colorScheme='orange'
+                    leftIcon={<Icon as={RiPencilLine} />}>
+                    Editar
+                  </Button>
+                </Td>
+              </Tr>
             </Tbody>
           </Table>
-
           <Pagination />
         </Box>
       </Flex>
