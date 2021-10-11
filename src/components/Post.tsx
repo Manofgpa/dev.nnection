@@ -1,4 +1,15 @@
-import { Box, Flex, Avatar, Text, Image, Link } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  Avatar,
+  Text,
+  Image,
+  Link,
+  Button,
+  Icon,
+  Divider,
+} from '@chakra-ui/react'
+import { BiLike, BiComment } from 'react-icons/bi'
 
 interface PostProps {
   avatar: string
@@ -55,6 +66,24 @@ export const Post = ({
       <Box align='center'>
         <Image src={image} />
       </Box>
+      <Flex justify='space-between' fontSize='20'>
+        <Box m='2'>
+          {likes}
+          <Icon ml='0.25' as={BiLike} />
+        </Box>
+        <Box m='2'>{`${comments} Comments`}</Box>
+      </Flex>
+      <Flex justify='space-around'>
+        <Button w='50%'>
+          <Icon as={BiLike} />
+          Like
+        </Button>
+        <Button w='50%'>
+          <Icon as={BiComment} />
+          Comment
+        </Button>
+      </Flex>
+      <Divider />
     </Flex>
   )
 }

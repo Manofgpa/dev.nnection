@@ -68,8 +68,30 @@ export const Feed = () => {
           comments={23}
           tags={['funny', 'mark', 'lol']}
         />
-        <Flex bg='gray.200'>Postagem 2</Flex>
-        <Flex bg='gray.200'>Postagem 3</Flex>
+        <Post
+          text={`Hi everyone,
+          I'm still in week 1 on LAB1 "Population". Help50 tells me everything is correct in my coding, however, the number of years don't appear in the Terminal. 
+          Any ideas what might be wrong? 
+          Thanks in advance for your help,
+          Anne`}
+          userName='Anne Dias'
+          avatar='https://scontent.fuba2-1.fna.fbcdn.net/v/t1.6435-9/184840817_4025480124165055_5091020494814689470_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=FOzmoPThITAAX-MdGcR&_nc_ht=scontent.fuba2-1.fna&oh=6ac07dc20641dcf71b1e41455de9c024&oe=618B8F0C'
+          hour='10 hours'
+          likes={9}
+          comments={18}
+          tags={['c', 'help', 'cs50']}
+        />
+        <Post
+          image='https://scontent.fuba2-1.fna.fbcdn.net/v/t39.30808-6/s640x640/245181442_590218885724901_3287240177021392033_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=825194&_nc_ohc=WerP14_fnvoAX_-IBLf&tn=OeDYb1pbYGmFyee-&_nc_ht=scontent.fuba2-1.fna&oh=658da52378b733c961318d1ed65a81b8&oe=61699F49'
+          text={`Python dna :
+          I've stored data from the CSV file into a list of dictionaries, I want to change the value of the STR's to int from each dictionary, but while doing so, it tries to convert the name as well to int which is giving me an error, how do I skip the conversion of the first item in the dictionary?`}
+          userName='Irene Naya'
+          avatar='https://scontent.fuba2-1.fna.fbcdn.net/v/t1.18169-9/1236610_10151807892304675_1493437916_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=R2DgS-C8r3YAX9f8VvD&_nc_oc=AQkQzTJDPwUnDfvF5gyLAAuL7zxBVjNgST1RBzLy68QzwzNcTdp4Yft5Fe3Zkxgu9aY&_nc_ht=scontent.fuba2-1.fna&oh=b3885cff193dc0b8d307c6680975b3aa&oe=618B7120'
+          hour='2 min'
+          likes={1}
+          comments={5}
+          tags={['python', 'harvard', 'cs50']}
+        />
       </Stack>
     </Flex>
   )
