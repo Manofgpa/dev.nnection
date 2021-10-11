@@ -58,9 +58,16 @@ export const Feed = () => {
         </HStack>
       </Flex>
       <Stack spacing='4' mt='5'>
-        <Post></Post>
-        <Post></Post>
-        <Post></Post>
+        <Post
+          image='https://scontent.fuba2-1.fna.fbcdn.net/v/t1.6435-9/245139559_5198515463508964_2007185322061498706_n.jpg?_nc_cat=1&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=PLnfM410RrEAX9OEhH4&tn=OeDYb1pbYGmFyee-&_nc_ht=scontent.fuba2-1.fna&oh=aee6afa88403d2c88ff3449bdad4ba39&oe=6189B85C'
+          text='We love you Mark 🙂'
+          userName='Web Nation'
+          avatar='https://scontent.fuba2-1.fna.fbcdn.net/v/t1.6435-9/73504887_3186919181335279_659877839054569472_n.jpg?_nc_cat=1&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=OkcpKFBVC9MAX-XiU9Q&tn=OeDYb1pbYGmFyee-&_nc_ht=scontent.fuba2-1.fna&oh=1b7e9ed8849f3e13e6284b699940e6de&oe=618B5E4A'
+          hour='2 hours'
+          likes={323}
+          comments={23}
+          tags={['funny', 'mark', 'lol']}
+        />
         <Flex bg='gray.200'>Postagem 2</Flex>
         <Flex bg='gray.200'>Postagem 3</Flex>
       </Stack>
