@@ -19,9 +19,10 @@ import { AiOutlineUsergroupAdd } from 'react-icons/ai'
 export const Header = () => {
   return (
     <Flex
+      zIndex={1000}
+      position='fixed'
       as='header'
       w='100%'
-      maxWidth={1480}
       h='20'
       mx='auto'
       px='4'

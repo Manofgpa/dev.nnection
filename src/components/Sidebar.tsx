@@ -10,10 +10,10 @@ import {
 
 export const Sidebar = () => {
   return (
-    <Box as='aside' w='48' bg='green.500'>
-      <Stack spacing='12' align='flex-start'>
+    <Box as='aside' w='20%' bg='green.500' position='fixed' top='20' left='0'>
+      <Stack spacing='12'>
         <Box color='green.50' ml='4'>
-          <Stack spacing='4' mt='8' align='stretch' fontSize='20'>
+          <Stack spacing='4' mt='8' fontSize='20'>
             <Link display='flex' align='center'>
               <Icon as={FiHome} color='gray.500' alignSelf='center' />
               <Text ml='4' fontWeight='medium'>

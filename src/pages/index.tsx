@@ -1,4 +1,5 @@
 import { Box, Flex, SimpleGrid } from '@chakra-ui/react'
+import { Feed } from '../components/Feed'
 import { Header } from '../components/Header'
 import { Sidebar } from '../components/Sidebar'
 import { TagBar } from '../components/TagBar'
@@ -8,14 +9,13 @@ export default function Home() {
     <>
       <Flex direction='column' h='100vh'>
         <Header />
+        <Sidebar />
 
-        <Flex w='100%' mx='auto' maxWidth={1480} flex='1'>
-          <Sidebar />
-
-          <Box flex='1'>Content</Box>
-
-          <TagBar />
+        <Flex flex='1' mt='20' p='2' position='absolute' right='25%' left='25%'>
+          <Feed />
         </Flex>
+
+        <TagBar />
       </Flex>
     </>
   )
