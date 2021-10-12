@@ -15,6 +15,7 @@ export const Profile = ({ showProfileData = true }: ProfileProps) => {
         </Box>
       )}
       <Avatar
+        mx='auto'
         size='md'
         name='Felipe Mano'
         src='https://www.github.com/manofgpa.png'
