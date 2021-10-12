@@ -1,4 +1,5 @@
 import { Box, Divider, Link, Stack, Text } from '@chakra-ui/react'
+import { Fragment } from 'react'
 import { TagbarPost } from './TagbarPost'
 
 type Post = {
@@ -27,12 +28,11 @@ export const TagbarPostSection = ({ sections }: TagbarPostSectionProps) => {
               </Link>
             </Box>
             <Divider />
-            {/* TODO Key prop */}
             {section.posts.map(post => (
-              <>
+              <Fragment key={post.title}>
                 <TagbarPost title={post.title} author={post.author} />
                 <Divider />
-              </>
+              </Fragment>
             ))}
           </Stack>
         </Box>
