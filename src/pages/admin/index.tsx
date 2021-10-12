@@ -19,12 +19,19 @@ import { Header } from '../../components/Header'
 import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
 import Link from 'next/link'
+import { useEffect } from 'react'
 
 export default function Admin() {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   })
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/users')
+      .then(res => res.json())
+      .then(data => console.log(data))
+  }, [])
 
   return (
     <Flex direction='column' h='130vh' bg='gray.900'>
