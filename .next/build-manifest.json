@@ -29,10 +29,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/feed": [
+    "/admin/createUser": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/feed.js"
+      "static/chunks/pages/admin/createUser.js"
     ]
   },
   "ampFirstPages": []

@@ -5,7 +5,7 @@ import { Input } from '../components/Form/Input'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-interface SignInFormData {
+type SignInFormData = {
   email: string
   password: string
 }
