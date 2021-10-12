@@ -18,8 +18,9 @@ import { RiAddLine, RiPencilLine } from 'react-icons/ri'
 import { Header } from '../../components/Header'
 import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
+import Link from 'next/link'
 
-export default function UserList() {
+export default function Admin() {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
@@ -47,16 +48,18 @@ export default function UserList() {
           ml={['0', '0', '0', '60']}>
           <Flex mb='8' justify='space-between' align='center'>
             <Heading size='lg' fontWeight='normal'>
-              Usuários
+              Users
             </Heading>
-            <Button
-              as='a'
-              size='md'
-              fontSize='md'
-              colorScheme='green'
-              leftIcon={<Icon as={RiAddLine} />}>
-              Novo usuário
-            </Button>
+            <Link href='/admin/createUser'>
+              <Button
+                as='a'
+                size='md'
+                fontSize='md'
+                colorScheme='green'
+                leftIcon={<Icon as={RiAddLine} />}>
+                Create user
+              </Button>
+            </Link>
           </Flex>
           <Table colorScheme='blackAlpha'>
             <Thead>
@@ -64,8 +67,8 @@ export default function UserList() {
                 <Th px={['4', '4', '6']} color='gray.300' width='8'>
                   <Checkbox colorScheme='green' />
                 </Th>
-                <Th>Usuário</Th>
-                <Th>Data de cadastro</Th>
+                <Th>User</Th>
+                <Th>Registration date </Th>
                 <Th w='8'></Th>
               </Tr>
             </Thead>
@@ -82,7 +85,7 @@ export default function UserList() {
                     </Text>
                   </Box>
                 </Td>
-                {isWideVersion && <Td>10 de Outubro, 2021</Td>}
+                {isWideVersion && <Td>October 10, 2021</Td>}
                 <Td>
                   <Button
                     as='a'
@@ -90,7 +93,7 @@ export default function UserList() {
                     fontSize='md'
                     colorScheme='orange'
                     leftIcon={<Icon as={RiPencilLine} />}>
-                    Editar
+                    Edit
                   </Button>
                 </Td>
               </Tr>
@@ -106,7 +109,7 @@ export default function UserList() {
                     </Text>
                   </Box>
                 </Td>
-                {isWideVersion && <Td>10 de Outubro, 2021</Td>}
+                {isWideVersion && <Td>October 10, 2021</Td>}
                 <Td>
                   <Button
                     as='a'
@@ -114,7 +117,7 @@ export default function UserList() {
                     fontSize='md'
                     colorScheme='orange'
                     leftIcon={<Icon as={RiPencilLine} />}>
-                    Editar
+                    Edit
                   </Button>
                 </Td>
               </Tr>
@@ -130,7 +133,7 @@ export default function UserList() {
                     </Text>
                   </Box>
                 </Td>
-                {isWideVersion && <Td>10 de Outubro, 2021</Td>}
+                {isWideVersion && <Td>October 10, 2021</Td>}
                 <Td>
                   <Button
                     as='a'
@@ -138,7 +141,7 @@ export default function UserList() {
                     fontSize='md'
                     colorScheme='orange'
                     leftIcon={<Icon as={RiPencilLine} />}>
-                    Editar
+                    Edit
                   </Button>
                 </Td>
               </Tr>

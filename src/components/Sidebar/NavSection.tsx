@@ -29,12 +29,12 @@ export const NavSection = ({
             <DrawerCloseButton mt='6' />
             <DrawerHeader>Navigation</DrawerHeader>
             <DrawerBody>
-              <SidebarNav title='Home' />
-              <SidebarNav title='Projects' />
-              <SidebarNav title='Friends' />
-              <SidebarNav title='Listings' />
-              <SidebarNav title='Groups' />
-              <SidebarNav title='Tags' />
+              <SidebarNav title='Home' href='/' />
+              <SidebarNav title='Projects' href='/projects' />
+              <SidebarNav title='Friends' href='/friends' />
+              <SidebarNav title='Listings' href='/listings' />
+              <SidebarNav title='Groups' href='/groups' />
+              <SidebarNav title='Tags' href='/tags' />
             </DrawerBody>
           </DrawerContent>
         </DrawerOverlay>
@@ -44,12 +44,12 @@ export const NavSection = ({
 
   return (
     <Box color='green.50' pl='4'>
-      <SidebarNav title='Home' />
-      <SidebarNav title='Projects' />
-      <SidebarNav title='Friends' />
-      <SidebarNav title='Listings' />
-      <SidebarNav title='Groups' />
-      <SidebarNav title='Tags' />
+      <SidebarNav title='Home' href='/' />
+      <SidebarNav title='Projects' href='/projects' />
+      <SidebarNav title='Friends' href='/friends' />
+      <SidebarNav title='Listings' href='/listings' />
+      <SidebarNav title='Groups' href='/groups' />
+      <SidebarNav title='Tags' href='/tags' />
     </Box>
   )
 }

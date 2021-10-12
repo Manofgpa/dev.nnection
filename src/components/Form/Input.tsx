@@ -13,10 +13,12 @@ interface InputProps extends ChakraInputProps {
 export const Input = ({ name, label, ...rest }: InputProps) => {
   return (
     <FormControl>
+      <FormLabel fontSize='18' py='2'>
+        {label}
+      </FormLabel>
       <ChakraInput
         name={name}
         id={name}
-        placeholder={label}
         focusBorderColor='green.500'
         bgColor='gray.50'
         color='black'

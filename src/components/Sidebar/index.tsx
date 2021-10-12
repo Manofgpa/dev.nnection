@@ -1,6 +1,7 @@
 import { Box, Stack, useBreakpointValue } from '@chakra-ui/react'
 import { useSidebarDrawer } from '../../contexts/SidebarDrawerContext'
 import { NavSection } from './NavSection'
+import { SidebarNav } from './SidebarNav'
 
 export const Sidebar = () => {
   const { isOpen, onClose } = useSidebarDrawer()
@@ -26,6 +27,10 @@ export const Sidebar = () => {
           isOpen={isOpen}
           onClose={onClose}
         />
+        {/* TODO only show admin if logged as admin */}
+        <Box pl='4'>
+          <SidebarNav title='Admin' href='/admin' />
+        </Box>
       </Stack>
     </Box>
   )
