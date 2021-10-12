@@ -44,7 +44,7 @@ export const NavSection = ({
 
   return (
     <Box color='green.50' pl='4'>
-      <SidebarNav title='Home' href='/' />
+      <SidebarNav title='Home' href='/feed' />
       <SidebarNav title='Projects' href='/projects' />
       <SidebarNav title='Friends' href='/friends' />
       <SidebarNav title='Listings' href='/listings' />

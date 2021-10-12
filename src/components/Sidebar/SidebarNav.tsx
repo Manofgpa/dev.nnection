@@ -9,6 +9,7 @@ import {
   FiSettings,
 } from 'react-icons/fi'
 import { RiAdminLine } from 'react-icons/ri'
+import { ActiveLink } from '../ActiveLink'
 
 interface NavSectionProps {
   title: string
@@ -27,13 +28,13 @@ export const SidebarNav = ({ title, href }: NavSectionProps) => {
   }
 
   return (
-    <Link href={href} passHref>
+    <ActiveLink href={href} passHref>
       <ChakraLink display='flex' align='center' mt='4'>
         <Icon as={icons[title]} color='gray.500' alignSelf='center' />
         <Text ml='4' fontWeight='medium'>
           {title}
         </Text>
       </ChakraLink>
-    </Link>
+    </ActiveLink>
   )
 }

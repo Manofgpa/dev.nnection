@@ -20,7 +20,7 @@ export default function SignIn() {
           <Input type='email' name='email' placeholder='Email' />
           <Input type='password' name='password' placeholder='Password' />
         </Stack>
-        <Link href='/'>
+        <Link href='/feed'>
           <Button
             as='a'
             type='submit'
