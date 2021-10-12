@@ -1,7 +1,15 @@
-import { Box, Stack, Text, Icon, Link } from '@chakra-ui/react'
+import { Box, Stack, useBreakpointValue } from '@chakra-ui/react'
+import { useSidebarDrawer } from '../../contexts/SidebarDrawerContext'
 import { NavSection } from './NavSection'
 
 export const Sidebar = () => {
+  const { isOpen, onClose } = useSidebarDrawer()
+
+  const isDrawerSidebar = useBreakpointValue({
+    base: true,
+    lg: false,
+  })
+
   return (
     <Box
       as='aside'
@@ -9,15 +17,15 @@ export const Sidebar = () => {
       bg='green.500'
       position='fixed'
       top='20'
+      hidden={isDrawerSidebar}
       left='0'
       h='100vh'>
       <Stack spacing='6' mt='5' fontSize='20'>
-        <NavSection title='Home' />
-        <NavSection title='Projects' />
-        <NavSection title='Friends' />
-        <NavSection title='Listings' />
-        <NavSection title='Groups' />
-        <NavSection title='Tags' />
+        <NavSection
+          isDrawerSidebar={isDrawerSidebar}
+          isOpen={isOpen}
+          onClose={onClose}
+        />
       </Stack>
     </Box>
   )

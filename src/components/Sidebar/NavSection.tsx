@@ -1,36 +1,55 @@
-import { Box, Icon, Link, Text } from '@chakra-ui/react'
-import React, { ReactNode } from 'react'
 import {
-  FiHome,
-  FiHeart,
-  FiUsers,
-  FiHash,
-  FiBriefcase,
-  FiSettings,
-} from 'react-icons/fi'
+  Box,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+} from '@chakra-ui/react'
+import React from 'react'
+import { SidebarNav } from './SidebarNav'
 
 interface NavSectionProps {
-  title: string
+  isDrawerSidebar: boolean
+  isOpen: boolean
+  onClose: () => void
 }
 
-export const NavSection = ({ title }: NavSectionProps) => {
-  const icons = {
-    Home: FiHome,
-    Projects: FiSettings,
-    Friends: FiHeart,
-    Listings: FiBriefcase,
-    Groups: FiUsers,
-    Tags: FiHash,
+export const NavSection = ({
+  isDrawerSidebar,
+  isOpen,
+  onClose,
+}: NavSectionProps) => {
+  if (isDrawerSidebar) {
+    return (
+      <Drawer isOpen={isOpen} placement='left' onClose={onClose}>
+        <DrawerOverlay>
+          <DrawerContent bg='gray.800' p='4' color='#ffffff'>
+            <DrawerCloseButton mt='6' />
+            <DrawerHeader>Navigation</DrawerHeader>
+            <DrawerBody>
+              <SidebarNav title='Home' />
+              <SidebarNav title='Projects' />
+              <SidebarNav title='Friends' />
+              <SidebarNav title='Listings' />
+              <SidebarNav title='Groups' />
+              <SidebarNav title='Tags' />
+            </DrawerBody>
+          </DrawerContent>
+        </DrawerOverlay>
+      </Drawer>
+    )
   }
 
   return (
     <Box color='green.50' pl='4'>
-      <Link to={`/${title.toLowerCase()}`} display='flex' align='center'>
-        <Icon as={icons[title]} color='gray.500' alignSelf='center' />
-        <Text ml='4' fontWeight='medium'>
-          {title}
-        </Text>
-      </Link>
+      <SidebarNav title='Home' />
+      <SidebarNav title='Projects' />
+      <SidebarNav title='Friends' />
+      <SidebarNav title='Listings' />
+      <SidebarNav title='Groups' />
+      <SidebarNav title='Tags' />
     </Box>
   )
 }
