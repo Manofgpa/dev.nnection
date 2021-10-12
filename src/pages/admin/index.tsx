@@ -24,25 +24,31 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 
 export default function Admin() {
-  const { data, isLoading, error } = useQuery('users', async () => {
-    const response = await fetch('http://localhost:3000/api/users')
-    const data = await response.json()
+  const { data, isLoading, error } = useQuery(
+    'users',
+    async () => {
+      const response = await fetch('http://localhost:3000/api/users')
+      const data = await response.json()
 
-    const users = data.users.map(user => {
-      return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        createdAt: new Date(user.createdAt).toLocaleDateString('en-US', {
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric',
-        }),
-      }
-    })
+      const users = data.users.map(user => {
+        return {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          createdAt: new Date(user.createdAt).toLocaleDateString('en-US', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric',
+          }),
+        }
+      })
 
-    return users
-  })
+      return users
+    },
+    {
+      staleTime: 1000 * 5, // 5 seg
+    }
+  )
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -80,7 +86,7 @@ export default function Admin() {
                 size='md'
                 fontSize='md'
                 colorScheme='green'
-                leftIcon={<Icon as={RiAddLine} />}>
+                leftIcon={<Icon as={RiAddLine} fontSize='xl' />}>
                 Create user
               </Button>
             </Link>
