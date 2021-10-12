@@ -9,8 +9,9 @@ import { AiOutlineUsergroupAdd } from 'react-icons/ai'
 export const NotificationsNav = () => {
   return (
     <HStack
-      mx={['4', '8']}
-      pr={['4', '8']}
+      spacing='0'
+      mx={['1', '4', '8']}
+      pr={['1', '4', '8']}
       py='1'
       color='green.800'
       borderRightWidth={1}

@@ -1,8 +1,20 @@
-import { Box, Stack, Text, Divider, Link } from '@chakra-ui/react'
+import {
+  Box,
+  Stack,
+  Text,
+  Divider,
+  Link,
+  useBreakpointValue,
+} from '@chakra-ui/react'
 import { TagbarPost } from './TagbarPost'
 import { TagbarPostSection } from './TagbarPostSection'
 
 export const TagBar = () => {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  })
+
   const sections = [
     {
       title: 'react',
@@ -41,17 +53,21 @@ export const TagBar = () => {
   ]
 
   return (
-    <Box
-      as='aside'
-      bg='gray.200'
-      w='20%'
-      position='fixed'
-      right='0'
-      top='20'
-      h='100vh'>
-      <Stack spacing='4' align='center'>
-        <TagbarPostSection sections={sections} />
-      </Stack>
-    </Box>
+    <>
+      {isWideVersion && (
+        <Box
+          as='aside'
+          bg='gray.200'
+          w='20%'
+          position='fixed'
+          right='0'
+          top='20'
+          h='100vh'>
+          <Stack spacing='4' align='center'>
+            <TagbarPostSection sections={sections} />
+          </Stack>
+        </Box>
+      )}
+    </>
   )
 }
