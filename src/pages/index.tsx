@@ -1,12 +1,19 @@
 import { Flex, Button, Stack, Image, Text } from '@chakra-ui/react'
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import Link from 'next/link'
 import { Input } from '../components/Form/Input'
 
-export default function SignIn() {
-  const { register, handleSubmit } = useForm()
+interface SignInFormData {
+  email: string
+  password: string
+}
 
-  const handleSignIn = values => {
+export default function SignIn() {
+  const { register, handleSubmit, formState } = useForm()
+
+  const handleSignIn: SubmitHandler<SignInFormData> = async values => {
+    await new Promise(resolve => setTimeout(resolve, 1500))
+
     console.log(values)
   }
 
@@ -51,7 +58,8 @@ export default function SignIn() {
           colorScheme='green'
           size='lg'
           borderRadius={20}
-          _hover={{ bg: 'green.500' }}>
+          _hover={{ bg: 'green.500' }}
+          isLoading={formState.isSubmitting}>
           LOGIN
         </Button>
         <Text
