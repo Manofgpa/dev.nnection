@@ -17,6 +17,11 @@ export const Header = () => {
     lg: true,
   })
 
+  const isMobileVersion = useBreakpointValue({
+    base: false,
+    sm: true,
+  })
+
   const { onOpen } = useSidebarDrawer()
 
   return (
@@ -40,7 +45,11 @@ export const Header = () => {
           mr='2'></IconButton>
       )}
 
-      <Image src='/small-logo.png' width={[100, 130, 250]} />
+      {isMobileVersion ? (
+        <Image src='/small-logo.png' width={[100, 130, 250]} />
+      ) : (
+        <Image src='/mobile-logo.png' width={70} />
+      )}
 
       {isWideVersion && <SearchBox />}
 
