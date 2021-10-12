@@ -10,6 +10,7 @@ import { useSidebarDrawer } from '../../contexts/SidebarDrawerContext'
 import { NotificationsNav } from '../Header/NotificationsNav'
 import { Profile } from '../Header/Profile'
 import { SearchBox } from '../Header/SearchBox'
+import Link from 'next/link'
 
 export const Header = () => {
   const isWideVersion = useBreakpointValue({
@@ -46,9 +47,17 @@ export const Header = () => {
       )}
 
       {isMobileVersion ? (
-        <Image src='/small-logo.png' width={[100, 130, 250]} />
+        <Link href='/feed' passHref>
+          <Image
+            src='/small-logo.png'
+            width={[100, 130, 250]}
+            cursor='pointer'
+          />
+        </Link>
       ) : (
-        <Image src='/mobile-logo.png' width={70} />
+        <Link href='/feed' passHref>
+          <Image src='/mobile-logo.png' width={70} cursor='pointer' />
+        </Link>
       )}
 
       {isWideVersion && <SearchBox />}
