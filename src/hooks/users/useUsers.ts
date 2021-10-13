@@ -15,7 +15,9 @@ type GetUsersResponse = {
 }
 
 export const getUsers = async (page: number): Promise<GetUsersResponse> => {
-  const { data } = await api.get(`users?page=${page}&per_page=10`)
+  const { data } = await api.get<GetUsersResponse>(
+    `users?page=${page}&per_page=10`
+  )
   const { totalUsers } = data
 
   const users = data.users.map(user => {

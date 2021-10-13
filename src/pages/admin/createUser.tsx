@@ -131,13 +131,14 @@ export default function CreateUser() {
           <Flex mt={['6', '8']} justify='flex-end'>
             <HStack spacing='4'>
               <Link href='/admin'>
-                <Button as='a' colorScheme='whiteAlpha'>
+                <Button as='a' colorScheme='whiteAlpha' cursor='pointer'>
                   Cancel
                 </Button>
               </Link>
               <Button
                 type='submit'
                 colorScheme='green'
+                cursor='pointer'
                 isLoading={isSubmitting}>
                 Save
               </Button>

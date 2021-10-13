@@ -81,7 +81,9 @@ export default function Admin() {
                 size='md'
                 fontSize='md'
                 colorScheme='green'
-                leftIcon={<Icon as={RiAddLine} fontSize='xl' />}>
+                leftIcon={
+                  <Icon as={RiAddLine} fontSize='xl' cursor='pointer' />
+                }>
                 Create user
               </Button>
             </NextLink>
@@ -132,6 +134,7 @@ export default function Admin() {
                           size='md'
                           fontSize='md'
                           colorScheme='orange'
+                          cursor='pointer'
                           leftIcon={<Icon as={RiPencilLine} />}>
                           Edit
                         </Button>
