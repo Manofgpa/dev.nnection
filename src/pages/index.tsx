@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { Input } from '../components/Form/Input'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useContext } from 'react'
+import { AuthContext } from '../contexts/AuthContext'
 
 type SignInFormData = {
   email: string
@@ -24,10 +26,10 @@ export default function SignIn() {
     resolver: yupResolver(signInFormSchema),
   })
 
-  const handleSignIn: SubmitHandler<SignInFormData> = async values => {
-    await new Promise(resolve => setTimeout(resolve, 1500))
+  const { signIn } = useContext(AuthContext)
 
-    console.log(values)
+  const handleSignIn: SubmitHandler<SignInFormData> = async values => {
+    signIn(values)
   }
 
   return (
