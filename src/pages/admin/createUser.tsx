@@ -45,8 +45,18 @@ export default function CreateUser() {
   })
 
   const handleCreateUser: SubmitHandler<CreateUserFormData> = async values => {
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    console.log(values)
+    const { name, email, password } = values
+    const body = {
+      name,
+      email,
+      password,
+    }
+    const response = await fetch('http://localhost:3001/login_user', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    })
+    console.log(response.json())
   }
 
   return (
@@ -80,6 +90,13 @@ export default function CreateUser() {
                 name='email'
                 type='email'
                 label='Email'
+                error={errors.email}
+                {...register('email')}
+              />
+              <Input
+                name='birthdate'
+                type='date'
+                label='Date of Birth'
                 error={errors.email}
                 {...register('email')}
               />
