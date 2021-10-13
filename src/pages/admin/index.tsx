@@ -14,14 +14,17 @@ import {
   Text,
   useBreakpointValue,
   Spinner,
+  Link,
 } from '@chakra-ui/react'
 import { RiAddLine, RiPencilLine } from 'react-icons/ri'
 import { Header } from '../../components/Header'
 import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { useUsers } from '../../hooks/users/useUsers'
 import { useState } from 'react'
+import { queryClient } from '../../services/queryClient'
+import { api } from '../../services/api'
 
 export default function Admin() {
   const [page, setPage] = useState(1)
@@ -32,6 +35,20 @@ export default function Admin() {
     base: false,
     lg: true,
   })
+
+  const handlePrefetchUser = async (userId: string) => {
+    await queryClient.prefetchQuery(
+      ['user', userId],
+      async () => {
+        const response = await api.get(`users/${userId}`)
+
+        return response.data
+      },
+      {
+        staleTime: 1000 * 60 * 10, // 10 minutos
+      }
+    )
+  }
 
   return (
     <Flex direction='column' h='130vh' bg='gray.900'>
@@ -58,7 +75,7 @@ export default function Admin() {
                 <Spinner size='sm' color='gray.500' ml='4' />
               )}
             </Heading>
-            <Link href='/admin/createUser'>
+            <NextLink href='/admin/createUser'>
               <Button
                 as='a'
                 size='md'
@@ -67,7 +84,7 @@ export default function Admin() {
                 leftIcon={<Icon as={RiAddLine} fontSize='xl' />}>
                 Create user
               </Button>
-            </Link>
+            </NextLink>
           </Flex>
           {isLoading ? (
             <Flex justify='center'>
@@ -98,7 +115,11 @@ export default function Admin() {
                       </Td>
                       <Td>
                         <Box>
-                          <Text fontWeight='bold'>{user.name}</Text>
+                          <Link
+                            color='green.400'
+                            onMouseEnter={() => handlePrefetchUser(user.id)}>
+                            <Text fontWeight='bold'>{user.name}</Text>
+                          </Link>
                           <Text fontSize='small' color='gray.300'>
                             {user.email}
                           </Text>

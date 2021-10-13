@@ -15,9 +15,7 @@ type GetUsersResponse = {
 }
 
 export const getUsers = async (page: number): Promise<GetUsersResponse> => {
-  const { data } = await api.get<GetUsersResponse>(
-    `users?page=${page}&per_page=10`
-  )
+  const { data } = await api.get(`users?page=${page}&per_page=10`)
   const { totalUsers } = data
 
   const users = data.users.map(user => {
@@ -43,6 +41,6 @@ export const getUsers = async (page: number): Promise<GetUsersResponse> => {
 
 export const useUsers = (page: number) => {
   return useQuery(['users', page], () => getUsers(page), {
-    staleTime: 1000 * 5, // 5 seg
+    staleTime: 1000 * 60 * 10, // 10 minutos
   })
 }
