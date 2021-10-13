@@ -15,6 +15,9 @@ import Link from 'next/link'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { api } from '../../services/api'
+import { queryClient } from '../../services/queryClient'
+import { useRouter } from 'next/router'
 
 type CreateUserFormData = {
   name: string
@@ -37,6 +40,8 @@ const createUserFormSchema = yup.object().shape({
 })
 
 export default function CreateUser() {
+  const router = useRouter()
+
   const {
     register,
     handleSubmit,
@@ -47,17 +52,21 @@ export default function CreateUser() {
 
   const handleCreateUser: SubmitHandler<CreateUserFormData> = async values => {
     const { name, email, password, birthdate } = values
-    const body = {
-      name,
-      email,
-      password,
-      birthdate: '10/10/1990',
+
+    try {
+      const response = await api.post('login_user', {
+        name,
+        email,
+        password,
+        birthdate,
+      })
+
+      queryClient.invalidateQueries('users')
+      router.push('/admin')
+    } catch (error) {
+      console.log(error)
+      return
     }
-    const response = await fetch('http://localhost:3001/login_user', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    })
   }
 
   return (
