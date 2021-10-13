@@ -40,6 +40,7 @@ export const makeServer = () => {
 
       this.namespace = ''
       this.passthrough()
+      this.shutdown()
     },
   })
 

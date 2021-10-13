@@ -21,21 +21,21 @@ import { Header } from '../../components/Header'
 import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
 import Link from 'next/link'
-import { useEffect } from 'react'
 
 export default function Admin() {
   const { data, isLoading, error } = useQuery(
     'users',
     async () => {
-      const response = await fetch('http://localhost:3000/api/users')
+      const response = await fetch('http://localhost:3001/users')
+
       const data = await response.json()
 
-      const users = data.users.map(user => {
+      const users = data.map(user => {
         return {
-          id: user.id,
+          id: user._id,
           name: user.name,
           email: user.email,
-          createdAt: new Date(user.createdAt).toLocaleDateString('en-US', {
+          createdAt: new Date(user.created_at).toLocaleDateString('en-US', {
             day: '2-digit',
             month: 'long',
             year: 'numeric',
@@ -55,12 +55,9 @@ export default function Admin() {
     lg: true,
   })
 
-  useEffect(() => {}, [])
-
   return (
     <Flex direction='column' h='130vh' bg='gray.900'>
       <Header />
-
       <Flex
         w={['auto', '100%']}
         my='6'
