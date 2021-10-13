@@ -23,7 +23,7 @@ import { Sidebar } from '../../components/Sidebar'
 import Link from 'next/link'
 
 export default function Admin() {
-  const { data, isLoading, error } = useQuery(
+  const { data, isLoading, error, isFetching } = useQuery(
     'users',
     async () => {
       const response = await fetch('http://localhost:3001/users')
@@ -76,6 +76,9 @@ export default function Admin() {
           <Flex mb='8' justify='space-between' align='center'>
             <Heading size='lg' fontWeight='normal'>
               Users
+              {!isLoading && isFetching && (
+                <Spinner size='sm' color='gray.500' ml='4' />
+              )}
             </Heading>
             <Link href='/admin/createUser'>
               <Button

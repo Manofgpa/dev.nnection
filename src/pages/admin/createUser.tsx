@@ -40,7 +40,7 @@ export default function CreateUser() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm({
     resolver: yupResolver(createUserFormSchema),
   })
