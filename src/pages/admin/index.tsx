@@ -21,9 +21,12 @@ import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
 import Link from 'next/link'
 import { useUsers } from '../../hooks/users/useUsers'
+import { useState } from 'react'
 
 export default function Admin() {
-  const { data, isLoading, error, isFetching } = useUsers()
+  const [page, setPage] = useState(1)
+
+  const { data, isLoading, error, isFetching } = useUsers(page)
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -88,7 +91,7 @@ export default function Admin() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {data.map(user => (
+                  {data?.users?.map(user => (
                     <Tr key={user.id}>
                       <Td px={['4', '4', '6']}>
                         <Checkbox colorScheme='green' />
@@ -117,9 +120,9 @@ export default function Admin() {
                 </Tbody>
               </Table>
               <Pagination
-                totalRegisterCount={200}
-                currentPage={5}
-                onPageChange={() => {}}
+                totalRegisterCount={data?.totalUsers}
+                currentPage={page}
+                onPageChange={setPage}
               />
             </>
           )}
