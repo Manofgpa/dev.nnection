@@ -20,7 +20,8 @@ type CreateUserFormData = {
   name: string
   email: string
   password: string
-  password_confirmation
+  password_confirmation: string
+  birthdate: string
 }
 
 const createUserFormSchema = yup.object().shape({
@@ -45,18 +46,18 @@ export default function CreateUser() {
   })
 
   const handleCreateUser: SubmitHandler<CreateUserFormData> = async values => {
-    const { name, email, password } = values
+    const { name, email, password, birthdate } = values
     const body = {
       name,
       email,
       password,
+      birthdate: '10/10/1990',
     }
     const response = await fetch('http://localhost:3001/login_user', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     })
-    console.log(response.json())
   }
 
   return (
@@ -97,8 +98,8 @@ export default function CreateUser() {
                 name='birthdate'
                 type='date'
                 label='Date of Birth'
-                error={errors.email}
-                {...register('email')}
+                error={errors.birthdate}
+                {...register('birthdate')}
               />
             </SimpleGrid>
             <SimpleGrid minChildWidth='240px' spacing={['6', '8']} w='100%'>
