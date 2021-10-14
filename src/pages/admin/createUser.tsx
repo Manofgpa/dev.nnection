@@ -15,9 +15,9 @@ import Link from 'next/link'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { api } from '../../services/api'
 import { queryClient } from '../../services/queryClient'
 import { useRouter } from 'next/router'
+import { api } from '../../services/apiClient'
 
 type CreateUserFormData = {
   name: string

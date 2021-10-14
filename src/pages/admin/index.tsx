@@ -24,7 +24,7 @@ import NextLink from 'next/link'
 import { useUsers } from '../../hooks/users/useUsers'
 import { useState } from 'react'
 import { queryClient } from '../../services/queryClient'
-import { api } from '../../services/api'
+import { api } from '../../services/apiClient'
 
 export default function Admin() {
   const [page, setPage] = useState(1)

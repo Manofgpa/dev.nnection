@@ -1,10 +1,12 @@
 import { Flex, useBreakpointValue } from '@chakra-ui/react'
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Feed } from '../components/Feed'
 import { Header } from '../components/Header'
 import { Sidebar } from '../components/Sidebar'
 import { TagBar } from '../components/Tagbar'
-import { api } from '../services/api'
+import { setupAPIClient } from '../services/api'
+import { api } from '../services/apiClient'
+import { withSSRAuth } from '../utils/withSSRAuth'
 
 export default function Home() {
   const isWideVersion = useBreakpointValue({
@@ -40,3 +42,12 @@ export default function Home() {
     </Flex>
   )
 }
+
+export const getServerSideProps = withSSRAuth(async ctx => {
+  const apiClient = setupAPIClient(ctx)
+  const response = await apiClient.get('/me')
+
+  return {
+    props: {},
+  }
+})

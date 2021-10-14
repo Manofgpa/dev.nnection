@@ -1,8 +1,7 @@
 import Router from 'next/router'
 import { createContext, ReactNode, useEffect, useState } from 'react'
 import { setCookie, parseCookies, destroyCookie } from 'nookies'
-
-import { api } from '../services/api'
+import { api } from '../services/apiClient'
 
 type User = {
   email: string
@@ -29,13 +28,6 @@ type AuthProviderProps = {
 
 export const AuthContext = createContext({} as AuthContextData)
 
-export const singOut = () => {
-  destroyCookie(undefined, 'devnnection.token')
-  destroyCookie(undefined, 'devnnection.refreshToken')
-
-  Router.push('/')
-}
-
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User>()
   const isAuthenticated = !!user
@@ -52,7 +44,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           setUser({ email, permissions, roles })
         })
         .catch(() => {
-          singOut()
+          signOut()
         })
     }
   }, [])
@@ -97,4 +89,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       {children}
     </AuthContext.Provider>
   )
+}
+
+export const signOut = () => {
+  destroyCookie(undefined, 'devnnection.token')
+  destroyCookie(undefined, 'devnnection.refreshToken')
+
+  Router.push('/')
 }

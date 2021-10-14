@@ -5,7 +5,7 @@ import {
 } from 'next'
 import { parseCookies } from 'nookies'
 
-export const withSSRGuest = <P>(
+export const withSSRAuth = <P>(
   fn: GetServerSideProps<P>
 ): GetServerSideProps => {
   return async (
@@ -13,10 +13,10 @@ export const withSSRGuest = <P>(
   ): Promise<GetServerSidePropsResult<P>> => {
     const cookies = parseCookies(ctx)
 
-    if (cookies['devnnection.token']) {
+    if (!cookies['devnnection.token']) {
       return {
         redirect: {
-          destination: '/feed',
+          destination: '/',
           permanent: false,
         },
       }
