@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const { 'devnnection.token': token } = parseCookies()
 
     if (token) {
-      api.get<User>('me').then(res => {
+      api.get<User>('/me').then(res => {
         const { email, permissions, roles } = res.data
 
         setUser({ email, permissions, roles })
