@@ -1,11 +1,15 @@
 import Router from 'next/router'
 import { createContext, ReactNode, useState } from 'react'
+import { setCookie } from 'nookies'
+
 import { api } from '../services/api'
 
 type User = {
   email: string
   permissions: string[]
   roles: string[]
+  token: string
+  refreshToken: string
 }
 
 type SignInCredentials = {
@@ -15,6 +19,7 @@ type SignInCredentials = {
 
 type AuthContextData = {
   signIn(credentials: SignInCredentials): Promise<void>
+  user: User
   isAuthenticated: boolean
 }
 
@@ -26,7 +31,7 @@ export const AuthContext = createContext({} as AuthContextData)
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User>()
-  const isAuthenticated = false
+  const isAuthenticated = !!user
 
   const signIn = async ({ email, password }: SignInCredentials) => {
     try {
@@ -35,15 +40,27 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         password,
       })
 
-      const { permissions, roles } = response.data
+      const { token, refreshToken, permissions, roles } = response.data
+
+      setCookie(undefined, 'devnnection.token', token, {
+        maxAge: 60 * 60 * 24 * 30, // 30 days
+        path: '/',
+      })
+
+      setCookie(undefined, 'devnnection.refreshToken', refreshToken, {
+        maxAge: 60 * 60 * 24 * 30, // 30 days
+        path: '/',
+      })
 
       setUser({
         email,
         permissions,
         roles,
+        refreshToken,
+        token,
       })
 
-      console.log({ email, permissions, roles })
+      console.log({ email, permissions, roles, refreshToken, token })
       Router.push('/feed')
     } catch (error) {
       console.log(error)
@@ -51,7 +68,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }
 
   return (
-    <AuthContext.Provider value={{ signIn, isAuthenticated }}>
+    <AuthContext.Provider value={{ signIn, isAuthenticated, user }}>
       {children}
     </AuthContext.Provider>
   )

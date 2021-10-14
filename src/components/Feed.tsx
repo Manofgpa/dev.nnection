@@ -8,9 +8,13 @@ import {
   Text,
   Link,
 } from '@chakra-ui/react'
+import { useContext } from 'react'
+import { AuthContext } from '../contexts/AuthContext'
 import { Post } from './Post'
 
 export const Feed = () => {
+  const { user } = useContext(AuthContext)
+
   return (
     <Flex direction='column' mx='auto'>
       <Flex

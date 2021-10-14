@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Flex, Box, Text, Avatar } from '@chakra-ui/react'
+import { AuthContext } from '../../contexts/AuthContext'
 
 interface ProfileProps {
   showProfileData: boolean
 }
 
 export const Profile = ({ showProfileData = true }: ProfileProps) => {
+  const { user } = useContext(AuthContext)
+
   return (
     <Flex align='center'>
       {showProfileData && (
         <Box mr='4' textAlign='right'>
           <Text>Felipe Mano</Text>
-          <Text fontSize='small'>manofgpa@gmail.com</Text>
+          <Text fontSize='small'>{user?.email}</Text>
         </Box>
       )}
       <Avatar

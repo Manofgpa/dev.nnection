@@ -1,4 +1,5 @@
 import { Flex, useBreakpointValue } from '@chakra-ui/react'
+import { useContext } from 'react'
 import { Feed } from '../components/Feed'
 import { Header } from '../components/Header'
 import { Sidebar } from '../components/Sidebar'
