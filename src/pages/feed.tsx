@@ -1,13 +1,9 @@
 import { Flex, useBreakpointValue } from '@chakra-ui/react'
-import { destroyCookie } from 'nookies'
-import { useEffect } from 'react'
 import { Feed } from '../components/Feed'
 import { Header } from '../components/Header'
 import { Sidebar } from '../components/Sidebar'
 import { TagBar } from '../components/Tagbar'
 import { setupAPIClient } from '../services/api'
-import { api } from '../services/apiClient'
-import { AuthTokenError } from '../services/errors/AuthTokenError'
 import { withSSRAuth } from '../utils/withSSRAuth'
 
 export default function Home() {
@@ -15,17 +11,6 @@ export default function Home() {
     base: false,
     lg: true,
   })
-
-  // useEffect(() => {
-  //   api
-  //     .get('me')
-  //     .then(res => {
-  //       console.log(res)
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
-  // }, [])
 
   return (
     <Flex direction='column' h='100vh'>
@@ -47,20 +32,9 @@ export default function Home() {
 
 export const getServerSideProps = withSSRAuth(async ctx => {
   const apiClient = setupAPIClient(ctx)
+  const response = await apiClient.get('/me')
 
-  try {
-    const response = await apiClient.get('/me')
-  } catch (err) {
-    destroyCookie(ctx, 'devnnection.token')
-    destroyCookie(ctx, 'devnnection.refreshToken')
-
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    }
-  }
+  console.log(response)
 
   return {
     props: {},
