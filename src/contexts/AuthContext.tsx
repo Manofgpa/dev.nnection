@@ -1,6 +1,6 @@
 import Router from 'next/router'
-import { createContext, ReactNode, useState } from 'react'
-import { setCookie } from 'nookies'
+import { createContext, ReactNode, useEffect, useState } from 'react'
+import { setCookie, parseCookies } from 'nookies'
 
 import { api } from '../services/api'
 
@@ -8,8 +8,8 @@ type User = {
   email: string
   permissions: string[]
   roles: string[]
-  token: string
-  refreshToken: string
+  token?: string
+  refreshToken?: string
 }
 
 type SignInCredentials = {
@@ -32,6 +32,18 @@ export const AuthContext = createContext({} as AuthContextData)
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User>()
   const isAuthenticated = !!user
+
+  useEffect(() => {
+    const { 'devnnection.token': token } = parseCookies()
+
+    if (token) {
+      api.get<User>('me').then(res => {
+        const { email, permissions, roles } = res.data
+
+        setUser({ email, permissions, roles })
+      })
+    }
+  }, [])
 
   const signIn = async ({ email, password }: SignInCredentials) => {
     try {
@@ -60,7 +72,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         token,
       })
 
-      console.log({ email, permissions, roles, refreshToken, token })
+      api.defaults.headers['Authorization'] = `Bearer ${token}`
+
       Router.push('/feed')
     } catch (error) {
       console.log(error)

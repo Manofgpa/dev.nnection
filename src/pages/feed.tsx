@@ -1,15 +1,22 @@
 import { Flex, useBreakpointValue } from '@chakra-ui/react'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { Feed } from '../components/Feed'
 import { Header } from '../components/Header'
 import { Sidebar } from '../components/Sidebar'
 import { TagBar } from '../components/Tagbar'
+import { api } from '../services/api'
 
 export default function Home() {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   })
+
+  useEffect(() => {
+    api.get('me').then(res => {
+      console.log(res)
+    })
+  }, [])
 
   return (
     <Flex direction='column' h='100vh'>
