@@ -18,6 +18,8 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { queryClient } from '../../services/queryClient'
 import { useRouter } from 'next/router'
 import { api } from '../../services/apiClient'
+import { withSSRAuth } from '../../utils/withSSRAuth'
+import { setupAPIClient } from '../../services/api'
 
 type CreateUserFormData = {
   name: string
@@ -149,3 +151,12 @@ export default function CreateUser() {
     </Flex>
   )
 }
+
+export const getServerSideProps = withSSRAuth(async ctx => {
+  const apiClient = setupAPIClient(ctx)
+  const response = await apiClient.get('/me')
+
+  return {
+    props: {},
+  }
+})

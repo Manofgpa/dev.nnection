@@ -25,6 +25,8 @@ import { useUsers } from '../../hooks/users/useUsers'
 import { useState } from 'react'
 import { queryClient } from '../../services/queryClient'
 import { api } from '../../services/apiClient'
+import { withSSRAuth } from '../../utils/withSSRAuth'
+import { setupAPIClient } from '../../services/api'
 
 export default function Admin() {
   const [page, setPage] = useState(1)
@@ -155,3 +157,12 @@ export default function Admin() {
     </Flex>
   )
 }
+
+export const getServerSideProps = withSSRAuth(async ctx => {
+  const apiClient = setupAPIClient(ctx)
+  const response = await apiClient.get('/me')
+
+  return {
+    props: {},
+  }
+})
