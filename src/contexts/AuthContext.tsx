@@ -1,4 +1,12 @@
-import { createContext, ReactNode } from 'react'
+import Router from 'next/router'
+import { createContext, ReactNode, useState } from 'react'
+import { api } from '../services/api'
+
+type User = {
+  email: string
+  permissions: string[]
+  roles: string[]
+}
 
 type SignInCredentials = {
   email: string
@@ -16,11 +24,30 @@ type AuthProviderProps = {
 
 export const AuthContext = createContext({} as AuthContextData)
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }: AuthProviderProps) => {
+  const [user, setUser] = useState<User>()
   const isAuthenticated = false
 
   const signIn = async ({ email, password }: SignInCredentials) => {
-    console.log({ email, password })
+    try {
+      const response = await api.post<User>('sessions', {
+        email,
+        password,
+      })
+
+      const { permissions, roles } = response.data
+
+      setUser({
+        email,
+        permissions,
+        roles,
+      })
+
+      console.log({ email, permissions, roles })
+      Router.push('/feed')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
