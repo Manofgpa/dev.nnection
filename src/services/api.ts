@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import { parseCookies, setCookie } from 'nookies'
+import { singOut } from '../contexts/AuthContext'
 
 type User = {
   token: string
@@ -81,8 +82,10 @@ api.interceptors.response.use(
           })
         })
       } else {
-        // deslogar
+        singOut()
       }
     }
+
+    return Promise.reject(error)
   }
 )
