@@ -14,20 +14,17 @@ export const Sidebar = () => {
   return (
     <Box
       as='aside'
-      w='20%'
+      w='15%'
       bg='green.500'
-      position='fixed'
-      top='20'
+      position='sticky'
       hidden={isDrawerSidebar}
-      left='0'
-      h='100vh'>
+      left='0'>
       <Stack spacing='6' mt='5' fontSize='20'>
         <NavSection
           isDrawerSidebar={isDrawerSidebar}
           isOpen={isOpen}
           onClose={onClose}
         />
-        {/* TODO only show admin if logged as admin */}
         {/* <Box pl='4'>
           <SidebarNav title='Admin' href='/admin' />
         </Box> */}

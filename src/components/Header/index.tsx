@@ -28,12 +28,13 @@ export const Header = () => {
   return (
     <Flex
       zIndex={1000}
-      position='fixed'
+      position='sticky'
       as='header'
-      w='100%'
+      top='0'
+      left='0'
       h='20'
       mx='auto'
-      px='4'
+      px='2'
       align='center'
       bg='white'>
       {!isWideVersion && (
@@ -62,7 +63,7 @@ export const Header = () => {
 
       {isWideVersion && <SearchBox />}
 
-      <Flex>
+      <Flex ml='auto'>
         <NotificationsNav />
         <Profile showProfileData={isWideVersion} />
       </Flex>

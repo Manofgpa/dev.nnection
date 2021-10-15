@@ -59,10 +59,11 @@ export const TagBar = () => {
           as='aside'
           bg='gray.200'
           w='20%'
-          position='fixed'
-          right='0'
-          top='20'
-          h='100vh'>
+          position='sticky'
+          // right='0'
+          // top='20'
+          // h='100vh'
+        >
           <Stack spacing='4' align='center'>
             <TagbarPostSection sections={sections} />
           </Stack>

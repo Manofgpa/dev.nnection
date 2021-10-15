@@ -16,14 +16,8 @@ export const Feed = () => {
   const { user } = useContext(AuthContext)
 
   return (
-    <Flex direction='column' mx='auto'>
-      <Flex
-        bg='gray.200'
-        mt='5'
-        p='4'
-        borderRadius={10}
-        direction='column'
-        w='100%'>
+    <Flex direction='column' mx='auto' p={['0', '0', '4']}>
+      <Flex bg='gray.200' p='4' borderRadius={10} direction='column'>
         <Flex>
           <Avatar
             size='lg'
