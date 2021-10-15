@@ -28,9 +28,9 @@ export const Sidebar = () => {
           onClose={onClose}
         />
         {/* TODO only show admin if logged as admin */}
-        <Box pl='4'>
+        {/* <Box pl='4'>
           <SidebarNav title='Admin' href='/admin' />
-        </Box>
+        </Box> */}
       </Stack>
     </Box>
   )

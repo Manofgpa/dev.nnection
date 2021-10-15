@@ -9,7 +9,7 @@ import {
   FiSettings,
 } from 'react-icons/fi'
 import { RiAdminLine } from 'react-icons/ri'
-import { ActiveLink } from '../ActiveLink'
+import { ActiveLink } from './ActiveLink'
 
 interface NavSectionProps {
   title: string

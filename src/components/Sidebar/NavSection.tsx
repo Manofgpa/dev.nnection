@@ -35,6 +35,7 @@ export const NavSection = ({
               <SidebarNav title='Listings' href='/listings' />
               <SidebarNav title='Groups' href='/groups' />
               <SidebarNav title='Tags' href='/tags' />
+              <SidebarNav title='Admin' href='/admin' />
             </DrawerBody>
           </DrawerContent>
         </DrawerOverlay>
@@ -50,6 +51,10 @@ export const NavSection = ({
       <SidebarNav title='Listings' href='/listings' />
       <SidebarNav title='Groups' href='/groups' />
       <SidebarNav title='Tags' href='/tags' />
+      {/* TODO only show admin if logged as admin */}
+      <Box pt='4'>
+        <SidebarNav title='Admin' href='/admin' />
+      </Box>
     </Box>
   )
 }
