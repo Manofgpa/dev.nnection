@@ -21,14 +21,15 @@ import { useRouter } from 'next/router'
 import { api } from '../../services/apiClient'
 import { withSSRAuth } from '../../utils/withSSRAuth'
 import { setupAPIClient } from '../../services/api'
-import { createUserFormSchema } from '../../contexts/AuthContext'
+import { createUserFormSchema } from '../../contexts/CreateUserContext'
 
 type CreateUserFormData = {
-  name: string
+  first_name: string
+  last_name: string
   email: string
   password: string
   password_confirmation: string
-  birthdate: string
+  birthday: string
 }
 
 export default function CreateUser() {
@@ -43,14 +44,15 @@ export default function CreateUser() {
   })
 
   const handleCreateUser: SubmitHandler<CreateUserFormData> = async values => {
-    const { name, email, password, birthdate } = values
+    const { first_name, last_name, email, password, birthday } = values
 
     try {
       const response = await api.post('login_user', {
-        name,
+        first_name,
+        last_name,
         email,
         password,
-        birthdate,
+        birthday,
       })
 
       toast.success(`User ${email} created!`)
@@ -107,11 +109,11 @@ export default function CreateUser() {
                 {...register('email')}
               />
               <Input
-                name='birthdate'
+                name='birthday'
                 type='date'
                 label='Date of Birth'
-                error={errors.birthdate}
-                {...register('birthdate')}
+                error={errors.birthday}
+                {...register('birthday')}
               />
             </SimpleGrid>
             <SimpleGrid minChildWidth='240px' spacing={['6', '8']} pt='8'>

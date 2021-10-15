@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { Flex, Box, Text, Avatar } from '@chakra-ui/react'
-import { AuthContext } from '../../contexts/AuthContext'
+import { Flex, Box, Text, Avatar, Button } from '@chakra-ui/react'
+import { AuthContext, signOut } from '../../contexts/AuthContext'
 
 interface ProfileProps {
   showProfileData: boolean
@@ -23,6 +23,7 @@ export const Profile = ({ showProfileData = true }: ProfileProps) => {
         name='Felipe Mano'
         src='https://www.github.com/manofgpa.png'
       />
+      <Button onClick={signOut}>Signout</Button>
     </Flex>
   )
 }

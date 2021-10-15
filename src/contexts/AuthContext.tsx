@@ -2,7 +2,6 @@ import Router from 'next/router'
 import { createContext, ReactNode, useEffect, useState } from 'react'
 import { setCookie, parseCookies, destroyCookie } from 'nookies'
 import { api } from '../services/apiClient'
-import * as yup from 'yup'
 
 type User = {
   email: string
@@ -98,15 +97,3 @@ export const signOut = () => {
 
   Router.push('/')
 }
-
-export const createUserFormSchema = yup.object().shape({
-  name: yup.string().required('Full name is required'),
-  email: yup.string().required('E-mail is required').email('Invalid E-mail'),
-  password: yup
-    .string()
-    .required('Password is required')
-    .min(6, 'Password must be at least 8 characters long'),
-  password_confirmation: yup
-    .string()
-    .oneOf([null, yup.ref('password')], 'Passwords must be equal'),
-})

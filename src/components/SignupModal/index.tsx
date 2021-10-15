@@ -11,20 +11,19 @@ import {
 } from '@chakra-ui/react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { createUserFormSchema } from '../../contexts/AuthContext'
+import { createUserFormSchema } from '../../contexts/CreateUserContext'
 import { Input } from '../Form/Input'
 import { api } from '../../services/apiClient'
-import { queryClient } from '../../services/queryClient'
 import { toast } from 'react-toastify'
-import router from 'next/router'
 import { useRef } from 'react'
 
 type CreateUserFormData = {
-  name: string
+  first_name: string
+  last_name: string
   email: string
   password: string
   password_confirmation: string
-  birthdate: string
+  birthday: string
 }
 
 export const SignupModal = ({ isOpen, onClose }) => {
@@ -39,20 +38,19 @@ export const SignupModal = ({ isOpen, onClose }) => {
   const initialRef = useRef()
 
   const handleCreateUser: SubmitHandler<CreateUserFormData> = async values => {
-    const { name, email, password, birthdate } = values
+    const { first_name, last_name, email, password, birthday } = values
 
     try {
       const response = await api.post('login_user', {
-        name,
+        first_name,
+        last_name,
         email,
         password,
-        birthdate,
+        birthday,
       })
 
-      toast.success(`User ${email} created!`)
-
-      queryClient.invalidateQueries('users')
-      router.push('/feed')
+      toast.success(`${last_name}, your account was created, please login!`)
+      onClose()
     } catch (error) {
       if (error.response) {
         // Request made and server responded
@@ -61,7 +59,7 @@ export const SignupModal = ({ isOpen, onClose }) => {
         }
       } else if (error.request) {
         // The request was made but no response was received
-        toast(error.request)
+        toast.error(error.request)
       } else {
         // Something happened in setting up the request that triggered an Error
         toast('Error', error.message)
@@ -91,17 +89,16 @@ export const SignupModal = ({ isOpen, onClose }) => {
           <ModalBody>
             <SimpleGrid minChildWidth='240px' spacing={['6', '8']} pt='8'>
               <Input
-                name='firstName'
+                name='first_name'
                 label='First Name'
-                {...register('firstName')}
-                error={errors.firstName}
-                ref={initialRef}
+                {...register('first_name')}
+                error={errors.first_name}
               />
               <Input
-                name='lastName'
+                name='last_name'
                 label='Last Name'
-                {...register('lastName')}
-                error={errors.lastName}
+                {...register('last_name')}
+                error={errors.last_name}
               />
               <Input
                 name='email'
@@ -140,7 +137,11 @@ export const SignupModal = ({ isOpen, onClose }) => {
             <Button mr='2' onClick={onClose}>
               Close
             </Button>
-            <Button type='submit' colorScheme='green' mr={3}>
+            <Button
+              type='submit'
+              colorScheme='green'
+              mr={3}
+              isLoading={isSubmitting}>
               Create account
             </Button>
           </ModalFooter>
