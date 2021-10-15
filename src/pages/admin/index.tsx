@@ -53,24 +53,19 @@ export default function Admin() {
   }
 
   return (
-    <Flex direction='column' h='130vh' bg='gray.900'>
+    <>
       <Header />
-      <Flex
-        w={['auto', '100%']}
-        my='6'
-        maxWidth={1480}
-        mx='auto'
-        px='6'
-        color='gray.50'>
+      <Flex bg='gray.900' h='100vh'>
         <Sidebar />
         <Box
+          borderRadius={12}
+          m='8'
           flex='1'
-          borderRadius={8}
           p='8'
-          h={['122vh', '0vh']}
-          mt={['10', '10', '20']}
-          ml={['0', '0', '0', '60']}>
-          <Flex mb='8' justify='space-between' align='center'>
+          bg='gray.800'
+          color='gray.50'
+          h='75vh'>
+          <Flex justify='space-between' align='center'>
             <Heading size='lg' fontWeight='normal'>
               Users
               {!isLoading && isFetching && (
@@ -154,7 +149,7 @@ export default function Admin() {
           )}
         </Box>
       </Flex>
-    </Flex>
+    </>
   )
 }
 
