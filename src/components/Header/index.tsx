@@ -33,6 +33,7 @@ export const Header = () => {
       top='0'
       left='0'
       h='20'
+      w='100%'
       mx='auto'
       px='2'
       align='center'

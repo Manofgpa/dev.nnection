@@ -72,26 +72,24 @@ export default function CreateUser() {
   }
 
   return (
-    <Flex direction='column' h='100vh' bg='gray.900'>
-      <Header />
+    <>
+      <Box bg='gray.900'>
+        <Header />
+        <Flex w='100%' color='gray.50' mx='auto' h='100vh'>
+          <Sidebar />
 
-      <Flex w='100%' my='6' maxWidth={1480} mx='auto' px='6' color='gray.50'>
-        <Sidebar />
-        <Box
-          as='form'
-          flex='1'
-          borderRadius={8}
-          bg='gray.800'
-          p={['6', '8']}
-          mt={['10', '10', '20']}
-          ml={['0', '0', '0', '60']}
-          onSubmit={handleSubmit(handleCreateUser)}>
-          <Heading size='lg' fontWeight='normal'>
-            Create user
-          </Heading>
-          <Divider my='6' borderColor='gray.700' />
-          <VStack spacing={['6', '8']}>
-            <SimpleGrid minChildWidth='240px' spacing={['6', '8']} w='100%'>
+          <Box
+            as='form'
+            borderRadius={8}
+            bg='gray.800'
+            flex='1'
+            p={['6', '8']}
+            onSubmit={handleSubmit(handleCreateUser)}>
+            <Heading size='lg' fontWeight='normal'>
+              Create user
+            </Heading>
+            <Divider my='6' borderColor='gray.700' />
+            <SimpleGrid minChildWidth='240px' spacing={['6', '8']} pt='8'>
               <Input
                 name='name'
                 label='Full name'
@@ -113,7 +111,7 @@ export default function CreateUser() {
                 {...register('birthdate')}
               />
             </SimpleGrid>
-            <SimpleGrid minChildWidth='240px' spacing={['6', '8']} w='100%'>
+            <SimpleGrid minChildWidth='240px' spacing={['6', '8']} pt='8'>
               <Input
                 name='password'
                 type='password'
@@ -129,26 +127,26 @@ export default function CreateUser() {
                 {...register('password_confirmation')}
               />
             </SimpleGrid>
-          </VStack>
-          <Flex mt={['6', '8']} justify='flex-end'>
-            <HStack spacing='4'>
-              <Link href='/admin'>
-                <Button as='a' colorScheme='whiteAlpha' cursor='pointer'>
-                  Cancel
+            <Flex mt={['6', '8']} justify='flex-end'>
+              <HStack spacing='4'>
+                <Link href='/admin'>
+                  <Button as='a' colorScheme='whiteAlpha' cursor='pointer'>
+                    Cancel
+                  </Button>
+                </Link>
+                <Button
+                  type='submit'
+                  colorScheme='green'
+                  cursor='pointer'
+                  isLoading={isSubmitting}>
+                  Save
                 </Button>
-              </Link>
-              <Button
-                type='submit'
-                colorScheme='green'
-                cursor='pointer'
-                isLoading={isSubmitting}>
-                Save
-              </Button>
-            </HStack>
-          </Flex>
-        </Box>
-      </Flex>
-    </Flex>
+              </HStack>
+            </Flex>
+          </Box>
+        </Flex>
+      </Box>
+    </>
   )
 }
 

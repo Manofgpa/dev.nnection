@@ -53,9 +53,10 @@ export default function Admin() {
   }
 
   return (
-    <>
+    <Flex bg='gray.900' direction='column'>
       <Header />
-      <Flex bg='gray.900' h='100vh'>
+
+      <Flex w='100%' h='100vh' overflow='scroll'>
         <Sidebar />
         <Box
           borderRadius={12}
@@ -149,7 +150,7 @@ export default function Admin() {
           )}
         </Box>
       </Flex>
-    </>
+    </Flex>
   )
 }
 
