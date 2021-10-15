@@ -3,11 +3,12 @@ import {
   Flex,
   Heading,
   Divider,
-  VStack,
   SimpleGrid,
   HStack,
   Button,
 } from '@chakra-ui/react'
+import { toast } from 'react-toastify'
+
 import { Input } from '../../components/Form/Input'
 import { Header } from '../../components/Header'
 import { Sidebar } from '../../components/Sidebar'
@@ -63,10 +64,23 @@ export default function CreateUser() {
         birthdate,
       })
 
+      toast.success(`User ${email} created!`)
+
       queryClient.invalidateQueries('users')
       router.push('/admin')
     } catch (error) {
-      console.log(error)
+      if (error.response) {
+        // Request made and server responded
+        if (error.response.status === 403) {
+          toast.error(`User ${email} already exists!`)
+        }
+      } else if (error.request) {
+        // The request was made but no response was received
+        toast(error.request)
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        toast('Error', error.message)
+      }
       return
     }
   }

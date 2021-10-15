@@ -8,6 +8,8 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import { queryClient } from '../services/queryClient'
 import React from 'react'
 import { AuthProvider } from '../contexts/AuthContext'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 if (process.env.NODE_ENV === 'development') {
   makeServer()
@@ -22,6 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </SidebarDrawerProvider>
         </ChakraProvider>
+        <ToastContainer />
 
         <ReactQueryDevtools />
       </QueryClientProvider>
