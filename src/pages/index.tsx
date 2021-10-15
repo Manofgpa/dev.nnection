@@ -1,14 +1,19 @@
-import { Flex, Button, Stack, Image, Text } from '@chakra-ui/react'
+import {
+  Flex,
+  Button,
+  Stack,
+  Image,
+  Text,
+  useDisclosure,
+} from '@chakra-ui/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import Link from 'next/link'
 import { Input } from '../components/Form/Input'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
-import { GetServerSideProps } from 'next'
-import { parseCookies } from 'nookies'
 import { withSSRGuest } from '../utils/withSSRGuest'
+import { SignupModal } from '../components/SignupModal'
 
 type SignInFormData = {
   email: string
@@ -21,6 +26,10 @@ const signInFormSchema = yup.object().shape({
 })
 
 export default function SignIn() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const isModalOpen = true
+
   const {
     register,
     handleSubmit,
@@ -34,6 +43,8 @@ export default function SignIn() {
   const handleSignIn: SubmitHandler<SignInFormData> = async values => {
     signIn(values)
   }
+
+  const handleSignUp = () => {}
 
   return (
     <Flex
@@ -55,22 +66,20 @@ export default function SignIn() {
         borderRadius={8}
         flexDirection='column'
         onSubmit={handleSubmit(handleSignIn)}>
-        <Stack spacing='4'>
-          <Input
-            type='email'
-            name='email'
-            placeholder='Email'
-            error={errors.email}
-            {...register('email')}
-          />
-          <Input
-            type='password'
-            name='password'
-            error={errors.password}
-            placeholder='Password'
-            {...register('password')}
-          />
-        </Stack>
+        <Input
+          type='email'
+          name='email'
+          placeholder='Email'
+          error={errors.email}
+          {...register('email')}
+        />
+        <Input
+          type='password'
+          name='password'
+          error={errors.password}
+          placeholder='Password'
+          {...register('password')}
+        />
         <Button
           type='submit'
           mt='6'
@@ -90,10 +99,16 @@ export default function SignIn() {
           borderRadius={20}>
           Forgot your password?
         </Text>
-        <Button type='button' colorScheme='green' size='lg' borderRadius={20}>
+        <Button
+          type='button'
+          colorScheme='green'
+          size='lg'
+          borderRadius={20}
+          onClick={onOpen}>
           CREATE ACCOUNT
         </Button>
       </Flex>
+      {isModalOpen && <SignupModal isOpen={isOpen} onClose={onClose} />}
     </Flex>
   )
 }
