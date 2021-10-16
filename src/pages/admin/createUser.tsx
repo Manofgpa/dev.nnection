@@ -59,18 +59,20 @@ export default function CreateUser() {
 
       queryClient.invalidateQueries('users')
       router.push('/admin')
+      console.log('erro')
     } catch (error) {
       if (error.response) {
         // Request made and server responded
         if (error.response.status === 403) {
           toast.error(`User ${email} already exists!`)
+          console.log('erro')
         }
       } else if (error.request) {
         // The request was made but no response was received
         toast(error.request)
       } else {
         // Something happened in setting up the request that triggered an Error
-        toast('Error', error.message)
+        toast(error.message)
       }
       return
     }
@@ -96,11 +98,19 @@ export default function CreateUser() {
             <Divider my='6' borderColor='gray.700' />
             <SimpleGrid minChildWidth='240px' spacing={['6', '8']} pt='8'>
               <Input
-                name='name'
-                label='Full name'
-                {...register('name')}
-                error={errors.name}
+                name='first_name'
+                label='First name'
+                {...register('first_name')}
+                error={errors.first_name}
               />
+              <Input
+                name='last_name'
+                label='Last name'
+                {...register('last_name')}
+                error={errors.last_name}
+              />
+            </SimpleGrid>
+            <SimpleGrid minChildWidth='240px' spacing={['6', '8']} pt='8'>
               <Input
                 name='email'
                 type='email'

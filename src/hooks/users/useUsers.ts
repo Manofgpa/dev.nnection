@@ -2,10 +2,11 @@ import { useQuery } from 'react-query'
 import { api } from '../../services/apiClient'
 
 type User = {
-  id: string
-  name: string
+  _id: string
+  first_name: string
+  last_name: string
   email: string
-  birthdate: string
+  birthday: string
   createdAt: string
 }
 
@@ -23,9 +24,10 @@ export const getUsers = async (page: number): Promise<GetUsersResponse> => {
   const users = data.users.map(user => {
     return {
       id: user._id,
-      name: user.name,
+      first_name: user.first_name,
+      last_name: user.last_name,
       email: user.email,
-      birthdate: new Date(user.created_at).toLocaleDateString('en-US', {
+      birthday: new Date(user.created_at).toLocaleDateString('en-US', {
         day: '2-digit',
         month: 'long',
         year: 'numeric',

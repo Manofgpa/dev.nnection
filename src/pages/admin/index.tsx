@@ -118,7 +118,7 @@ export default function Admin() {
                           <Link
                             color='green.400'
                             onMouseEnter={() => handlePrefetchUser(user.id)}>
-                            <Text fontWeight='bold'>{user.name}</Text>
+                            <Text fontWeight='bold'>{`${user.first_name} ${user.last_name}`}</Text>
                           </Link>
                           <Text fontSize='small' color='gray.300'>
                             {user.email}

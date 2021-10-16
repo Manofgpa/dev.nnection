@@ -39,6 +39,7 @@ export const SignupModal = ({ isOpen, onClose }) => {
 
   const handleCreateUser: SubmitHandler<CreateUserFormData> = async values => {
     const { first_name, last_name, email, password, birthday } = values
+    console.log(values)
 
     try {
       const response = await api.post('login_user', {
