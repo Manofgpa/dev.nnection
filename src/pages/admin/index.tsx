@@ -55,7 +55,6 @@ export default function Admin() {
   return (
     <Flex bg='gray.900' direction='column'>
       <Header />
-
       <Flex w='100%' h='100vh' overflow='scroll'>
         <Sidebar />
         <Box
