@@ -41,70 +41,66 @@ export default function SignIn() {
   const { signIn } = useContext(AuthContext)
 
   const handleSignIn: SubmitHandler<SignInFormData> = async values => {
-    console.log(values)
-
     signIn(values)
   }
 
-  const handleSignUp = () => {}
-
   return (
     <Flex
-      w='100vw'
-      h='100vh'
-      align='center'
-      justify='center'
+      w="100vw"
+      h="100vh"
+      align="center"
+      justify="center"
       display={['block', 'flex']}>
       <Flex>
-        <Image src='logo.png' />
+        <Image src="logo.png" />
       </Flex>
       <Flex
-        as='form'
-        width='100%'
+        as="form"
+        width="100%"
         maxWidth={380}
-        bg='white'
-        p='8'
-        mx='auto'
+        bg="white"
+        p="8"
+        mx="auto"
         borderRadius={8}
-        flexDirection='column'
+        flexDirection="column"
         onSubmit={handleSubmit(handleSignIn)}>
         <Input
-          type='email'
-          name='email'
-          placeholder='Email'
+          type="email"
+          name="email"
+          placeholder="Email"
           error={errors.email}
           {...register('email')}
         />
         <Input
-          type='password'
-          name='password'
+          type="password"
+          name="password"
           error={errors.password}
-          placeholder='Password'
+          placeholder="Password"
           {...register('password')}
         />
         <Button
-          type='submit'
-          mt='6'
-          bgColor='#030301'
-          colorScheme='green'
-          size='lg'
+          type="submit"
+          mt="6"
+          bgColor="#030301"
+          colorScheme="green"
+          size="lg"
           borderRadius={20}
           _hover={{ bg: 'green.500' }}
           isLoading={isSubmitting}>
           LOGIN
         </Button>
         <Text
-          m='4'
-          textAlign='center'
-          color='#000'
-          fontWeight='bold'
+          m="4"
+          textAlign="center"
+          color="#000"
+          fontWeight="bold"
           borderRadius={20}>
           Forgot your password?
         </Text>
         <Button
-          type='button'
-          colorScheme='green'
-          size='lg'
+          type="button"
+          colorScheme="green"
+          size="lg"
           borderRadius={20}
           onClick={onOpen}>
           CREATE ACCOUNT
