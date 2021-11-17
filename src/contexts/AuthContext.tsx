@@ -4,6 +4,8 @@ import { setCookie, parseCookies, destroyCookie } from 'nookies'
 import { api } from '../services/apiClient'
 
 type User = {
+  first_name: string
+  last_name: string
   email: string
   permissions: string[]
   roles: string[]
@@ -39,9 +41,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       api
         .get<User>('/me')
         .then(res => {
-          const { email, permissions, roles } = res.data
+          const { email, permissions, roles, first_name, last_name } = res.data
 
-          setUser({ email, permissions, roles })
+          setUser({ email, permissions, roles, first_name, last_name })
         })
         .catch(() => {
           signOut()

@@ -10,18 +10,18 @@ export const Profile = ({ showProfileData = true }: ProfileProps) => {
   const { user } = useContext(AuthContext)
 
   return (
-    <Flex align='center'>
+    <Flex align="center">
       {showProfileData && (
-        <Box mr='4' textAlign='right'>
-          <Text>Felipe Mano</Text>
-          <Text fontSize='small'>{user?.email}</Text>
+        <Box mr="4" textAlign="right">
+          <Text>{`${user?.first_name} ${user?.last_name}`}</Text>
+          <Text fontSize="small">{user?.email}</Text>
         </Box>
       )}
       <Avatar
-        mx='auto'
-        size='md'
-        name='Felipe Mano'
-        src='https://www.github.com/manofgpa.png'
+        mx="auto"
+        size="md"
+        name="Felipe Mano"
+        src="https://www.github.com/manofgpa.png"
       />
       <Button onClick={signOut}>Signout</Button>
     </Flex>

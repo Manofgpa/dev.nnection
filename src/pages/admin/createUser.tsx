@@ -84,7 +84,6 @@ export default function CreateUser() {
         <Header />
         <Flex w='100%' color='gray.50' mx='auto' h='100vh'>
           <Sidebar />
-
           <Box
             as='form'
             borderRadius={8}

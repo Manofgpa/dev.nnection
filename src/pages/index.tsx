@@ -41,6 +41,8 @@ export default function SignIn() {
   const { signIn } = useContext(AuthContext)
 
   const handleSignIn: SubmitHandler<SignInFormData> = async values => {
+    console.log(values)
+
     signIn(values)
   }
 
