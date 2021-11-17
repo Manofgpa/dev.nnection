@@ -18,11 +18,11 @@ export default function Home() {
       <Flex>
         <Sidebar />
         {isWideVersion ? (
-          <Flex flex='1' p='2'>
+          <Flex flex="1" p="2">
             <Feed />
           </Flex>
         ) : (
-          <Flex flex='1' m='4'>
+          <Flex flex="1" m="4">
             <Feed />
           </Flex>
         )}

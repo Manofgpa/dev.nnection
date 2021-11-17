@@ -46,7 +46,7 @@ export default function SignIn() {
 
   const handleSignIn: SubmitHandler<SignInFormData> = async values => {
     const response = await signIn(values)
-    if (response.error) {
+    if (response?.error) {
       setError(response.message)
     }
   }

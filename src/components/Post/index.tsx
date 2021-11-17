@@ -33,14 +33,13 @@ export const Post = ({
   tags,
 }: PostProps) => {
   return (
-    <Flex bg='gray.200' direction='column' borderRadius={10}>
-      <Flex justify='right'></Flex>
-      <Flex p='2'>
+    <Flex bg="gray.200" direction="column" borderRadius={10}>
+      <Flex justify="right"></Flex>
+      <Flex p="2">
         <Link>
-          <Avatar src={avatar} size='md' />
+          <Avatar src={avatar} size="md" />
         </Link>
-
-        <Flex direction='column' ml='2'>
+        <Flex direction="column" ml="2">
           <Link>
             <Text>{userName}</Text>
           </Link>
@@ -48,38 +47,38 @@ export const Post = ({
             <Text>{hour} ago</Text>
           </Link>
         </Flex>
-        <Box ml='auto'>
+        <Box ml="auto">
           {tags.map(tag => (
             <Link
               key={tag}
-              mr='2'
-              mt='2'
-              bg='gray.900'
-              color='gray.50'
+              mr="2"
+              mt="2"
+              bg="gray.900"
+              color="gray.50"
               borderRadius={15}
-              p='1'>{`#${tag}`}</Link>
+              p="1">{`#${tag}`}</Link>
           ))}
         </Box>
       </Flex>
-      <Box p='2'>
+      <Box p="2">
         <Text>{text}</Text>
       </Box>
-      <Box align='center'>
+      <Box align="center">
         <Image src={image} />
       </Box>
-      <Flex justify='space-between' fontSize='20'>
-        <Box m='2'>
+      <Flex justify="space-between" fontSize="20">
+        <Box m="2">
           {likes}
-          <Icon ml='0.25' as={BiLike} />
+          <Icon ml="0.25" as={BiLike} />
         </Box>
-        <Box m='2'>{`${comments} Comments`}</Box>
+        <Box m="2">{`${comments} Comments`}</Box>
       </Flex>
-      <Flex justify='space-around'>
-        <Button w='50%'>
+      <Flex justify="space-around">
+        <Button w="50%">
           <Icon as={BiLike} />
           Like
         </Button>
-        <Button w='50%'>
+        <Button w="50%">
           <Icon as={BiComment} />
           Comment
         </Button>
