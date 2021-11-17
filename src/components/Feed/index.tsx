@@ -22,13 +22,13 @@ export const Feed = () => {
         <Flex>
           <Avatar
             size="2xl"
-            name="Felipe Mano"
+            name={`${user?.first_name} ${user?.last_name}`}
             src="https://www.github.com/manofgpa.png"
             alignSelf="center"
             mr="4"
           />
           <Box as="label" w="100%">
-            <InputPostBox />
+            <InputPostBox username={`${user?.first_name} ${user?.last_name}`} />
           </Box>
         </Flex>
       </Flex>

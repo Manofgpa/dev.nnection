@@ -12,7 +12,11 @@ import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
 import { HiOutlinePhotograph } from 'react-icons/hi'
 import { PostModal } from '../Post/PostModal'
 
-export const InputPostBox = () => {
+type InputPostBoxProps = {
+  username: string
+}
+
+export const InputPostBox = ({ username }: InputPostBoxProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -54,7 +58,12 @@ export const InputPostBox = () => {
           </Button>
         </Box>
       </Stack>
-      <PostModal isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
+      <PostModal
+        isOpen={isOpen}
+        onClose={onClose}
+        onOpen={onOpen}
+        username={username}
+      />
     </>
   )
 }
