@@ -17,7 +17,9 @@
     "@types/node": "^16.10.3",
     "@types/react": "^17.0.27",
     "axios": "^0.23.0",
+    "dotenv": "^10.0.0",
     "framer-motion": "^4.1.17",
+    "mongoose": "^6.0.13",
     "next": "11.1.2",
     "nookies": "^2.5.2",
     "react": "17.0.2",
@@ -46,5 +48,10 @@
     "faker": "^5.5.3",
     "miragejs": "^0.1.42",
     "prettier": "^2.4.1"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }

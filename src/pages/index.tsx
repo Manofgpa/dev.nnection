@@ -15,7 +15,7 @@ import { useContext, useState } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 import { withSSRGuest } from '../utils/withSSRGuest'
 import { SignupModal } from '../components/SignupModal'
-import { log } from 'console'
+import dotenv from 'dotenv'
 
 type SignInFormData = {
   email: string
@@ -125,6 +125,8 @@ export default function SignIn() {
 }
 
 export const getServerSideProps = withSSRGuest(async ctx => {
+  dotenv.config()
+
   return {
     props: {},
   }

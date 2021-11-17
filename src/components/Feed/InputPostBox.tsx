@@ -7,9 +7,11 @@ import {
   Stack,
   useDisclosure,
 } from '@chakra-ui/react'
-import React from 'react'
+import React, { useContext } from 'react'
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
 import { HiOutlinePhotograph } from 'react-icons/hi'
+import { AuthContext } from '../../contexts/AuthContext'
+import { api } from '../../services/apiClient'
 import { PostModal } from '../Post/PostModal'
 
 type InputPostBoxProps = {
@@ -18,6 +20,22 @@ type InputPostBoxProps = {
 
 export const InputPostBox = ({ username }: InputPostBoxProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { user } = useContext(AuthContext)
+
+  const handleSubmit = async postMessage => {
+    if (!postMessage) return
+
+    const post = {
+      message: postMessage,
+      user: `${user?.first_name} ${user?.last_name}`,
+      timestamp: new Date(),
+    }
+
+    const response = await api.post(
+      'http://localhost:3000/api/post/create',
+      post
+    )
+  }
 
   return (
     <>
@@ -63,6 +81,7 @@ export const InputPostBox = ({ username }: InputPostBoxProps) => {
         onClose={onClose}
         onOpen={onOpen}
         username={username}
+        handleSubmit={handleSubmit}
       />
     </>
   )
