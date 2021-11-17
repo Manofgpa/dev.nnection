@@ -1,19 +1,21 @@
 import {
   Flex,
   Button,
-  Stack,
   Image,
   Text,
   useDisclosure,
+  Alert,
+  AlertIcon,
 } from '@chakra-ui/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Input } from '../components/Form/Input'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 import { withSSRGuest } from '../utils/withSSRGuest'
 import { SignupModal } from '../components/SignupModal'
+import { log } from 'console'
 
 type SignInFormData = {
   email: string
@@ -28,7 +30,9 @@ const signInFormSchema = yup.object().shape({
 export default function SignIn() {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const isModalOpen = true
+  const [isModalOpen, setIsModalOpen] = useState(true)
+
+  const [error, setError] = useState('')
 
   const {
     register,
@@ -41,7 +45,10 @@ export default function SignIn() {
   const { signIn } = useContext(AuthContext)
 
   const handleSignIn: SubmitHandler<SignInFormData> = async values => {
-    signIn(values)
+    const response = await signIn(values)
+    if (response.error) {
+      setError(response.message)
+    }
   }
 
   return (
@@ -64,6 +71,12 @@ export default function SignIn() {
         borderRadius={8}
         flexDirection="column"
         onSubmit={handleSubmit(handleSignIn)}>
+        {!!error && (
+          <Alert status="error" borderRadius={4}>
+            <AlertIcon />
+            {error}
+          </Alert>
+        )}
         <Input
           type="email"
           name="email"

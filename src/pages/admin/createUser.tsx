@@ -59,13 +59,11 @@ export default function CreateUser() {
 
       queryClient.invalidateQueries('users')
       router.push('/admin')
-      console.log('erro')
     } catch (error) {
       if (error.response) {
         // Request made and server responded
         if (error.response.status === 403) {
           toast.error(`User ${email} already exists!`)
-          console.log('erro')
         }
       } else if (error.request) {
         // The request was made but no response was received
@@ -80,78 +78,78 @@ export default function CreateUser() {
 
   return (
     <>
-      <Box bg='gray.900'>
+      <Box bg="gray.900">
         <Header />
-        <Flex w='100%' color='gray.50' mx='auto' h='100vh'>
+        <Flex w="100%" color="gray.50" mx="auto" h="100vh">
           <Sidebar />
           <Box
-            as='form'
+            as="form"
             borderRadius={8}
-            bg='gray.800'
-            flex='1'
+            bg="gray.800"
+            flex="1"
             p={['6', '8']}
             onSubmit={handleSubmit(handleCreateUser)}>
-            <Heading size='lg' fontWeight='normal'>
+            <Heading size="lg" fontWeight="normal">
               Create user
             </Heading>
-            <Divider my='6' borderColor='gray.700' />
-            <SimpleGrid minChildWidth='240px' spacing={['6', '8']} pt='8'>
+            <Divider my="6" borderColor="gray.700" />
+            <SimpleGrid minChildWidth="240px" spacing={['6', '8']} pt="8">
               <Input
-                name='first_name'
-                label='First name'
+                name="first_name"
+                label="First name"
                 {...register('first_name')}
                 error={errors.first_name}
               />
               <Input
-                name='last_name'
-                label='Last name'
+                name="last_name"
+                label="Last name"
                 {...register('last_name')}
                 error={errors.last_name}
               />
             </SimpleGrid>
-            <SimpleGrid minChildWidth='240px' spacing={['6', '8']} pt='8'>
+            <SimpleGrid minChildWidth="240px" spacing={['6', '8']} pt="8">
               <Input
-                name='email'
-                type='email'
-                label='Email'
+                name="email"
+                type="email"
+                label="Email"
                 error={errors.email}
                 {...register('email')}
               />
               <Input
-                name='birthday'
-                type='date'
-                label='Date of Birth'
+                name="birthday"
+                type="date"
+                label="Date of Birth"
                 error={errors.birthday}
                 {...register('birthday')}
               />
             </SimpleGrid>
-            <SimpleGrid minChildWidth='240px' spacing={['6', '8']} pt='8'>
+            <SimpleGrid minChildWidth="240px" spacing={['6', '8']} pt="8">
               <Input
-                name='password'
-                type='password'
-                label='Password'
+                name="password"
+                type="password"
+                label="Password"
                 error={errors.password}
                 {...register('password')}
               />
               <Input
-                name='password_confirmation'
-                type='password'
-                label='Password Confirmation'
+                name="password_confirmation"
+                type="password"
+                label="Password Confirmation"
                 error={errors.password_confirmation}
                 {...register('password_confirmation')}
               />
             </SimpleGrid>
-            <Flex mt={['6', '8']} justify='flex-end'>
-              <HStack spacing='4'>
-                <Link href='/admin'>
-                  <Button as='a' colorScheme='whiteAlpha' cursor='pointer'>
+            <Flex mt={['6', '8']} justify="flex-end">
+              <HStack spacing="4">
+                <Link href="/admin">
+                  <Button as="a" colorScheme="whiteAlpha" cursor="pointer">
                     Cancel
                   </Button>
                 </Link>
                 <Button
-                  type='submit'
-                  colorScheme='green'
-                  cursor='pointer'
+                  type="submit"
+                  colorScheme="green"
+                  cursor="pointer"
                   isLoading={isSubmitting}>
                   Save
                 </Button>
