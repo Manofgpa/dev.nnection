@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import mongoose from 'mongoose'
 import { connectToMongoDB, db } from '../../../services/mongodb'
+import axios from 'axios'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { Schema } = mongoose
