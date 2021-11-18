@@ -1,17 +1,22 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import mongoose from 'mongoose'
-import db from '../../../services/mongodb'
+import { connectToMongoDB, db } from '../../../services/mongodb'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const { Schema } = mongoose
+
   if (req.method === 'POST') {
     try {
       const { post } = req.body
-
-      await db.collection('posts').insertOne(post, (err, res) => {
-        if (err) throw err
-
-        db.close()
+      const postSchema = new Schema({
+        message: String,
+        user: String,
+        timestamp: Date,
       })
+
+      connectToMongoDB()
+
+      db.close()
 
       return res.status(200).json({
         post,
