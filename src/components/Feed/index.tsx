@@ -8,14 +8,17 @@ import {
   Text,
   Link,
 } from '@chakra-ui/react'
-import { useContext } from 'react'
-import { AuthContext } from '../../contexts/AuthContext'
 import { Post } from '../Post'
 import { InputPostBox } from './InputPostBox'
 
-export const Feed = () => {
-  const { user } = useContext(AuthContext)
+type FeedProps = {
+  user: {
+    first_name: string
+    last_name: string
+  }
+}
 
+export const Feed = ({ user }: FeedProps) => {
   return (
     <Flex direction="column" mx="auto" p={['0', '0', '4']}>
       <Flex bg="gray.200" p="4" borderRadius={10} direction="column">

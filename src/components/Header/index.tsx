@@ -12,7 +12,14 @@ import { Profile } from '../Header/Profile'
 import { SearchBox } from '../Header/SearchBox'
 import Link from 'next/link'
 
-export const Header = () => {
+type HeaderProps = {
+  user: {
+    first_name: string
+    last_name: string
+  }
+}
+
+export const Header = ({ user }: HeaderProps) => {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
@@ -28,45 +35,45 @@ export const Header = () => {
   return (
     <Flex
       zIndex={1000}
-      position='sticky'
-      as='header'
-      top='0'
-      left='0'
-      h='20'
-      w='100%'
-      mx='auto'
-      px='2'
-      align='center'
-      bg='white'>
+      position="sticky"
+      as="header"
+      top="0"
+      left="0"
+      h="20"
+      w="100%"
+      mx="auto"
+      px="2"
+      align="center"
+      bg="white">
       {!isWideVersion && (
         <IconButton
-          aria-label='Open navigation'
+          aria-label="Open navigation"
           icon={<Icon as={RiMenuLine} />}
-          fontSize='24'
-          variant='unstyled'
+          fontSize="24"
+          variant="unstyled"
           onClick={onOpen}
-          mr='2'></IconButton>
+          mr="2"></IconButton>
       )}
 
       {isMobileVersion ? (
-        <Link href='/feed' passHref>
+        <Link href="/feed" passHref>
           <Image
-            src='/small-logo.png'
+            src="/small-logo.png"
             width={[100, 130, 250]}
-            cursor='pointer'
+            cursor="pointer"
           />
         </Link>
       ) : (
-        <Link href='/feed' passHref>
-          <Image src='/mobile-logo.png' width={70} cursor='pointer' />
+        <Link href="/feed" passHref>
+          <Image src="/mobile-logo.png" width={70} cursor="pointer" />
         </Link>
       )}
 
       {isWideVersion && <SearchBox />}
 
-      <Flex ml='auto'>
+      <Flex ml="auto">
         <NotificationsNav />
-        <Profile showProfileData={isWideVersion} />
+        <Profile showProfileData={isWideVersion} user={user} />
       </Flex>
     </Flex>
   )

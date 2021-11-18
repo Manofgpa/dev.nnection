@@ -6,7 +6,13 @@ import { TagBar } from '../components/Tagbar'
 import { setupAPIClient } from '../services/api'
 import { withSSRAuth } from '../utils/withSSRAuth'
 
-export default function Home() {
+type HomeProps = {
+  user: {
+    first_name: string
+    last_name: string
+  }
+}
+export default function Home({ user }: HomeProps) {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
@@ -14,16 +20,16 @@ export default function Home() {
 
   return (
     <>
-      <Header />
+      <Header user={user} />
       <Flex>
         <Sidebar />
         {isWideVersion ? (
           <Flex flex="1" p="2">
-            <Feed />
+            <Feed user={user} />
           </Flex>
         ) : (
           <Flex flex="1" m="4">
-            <Feed />
+            <Feed user={user} />
           </Flex>
         )}
         <TagBar />
@@ -37,6 +43,6 @@ export const getServerSideProps = withSSRAuth(async ctx => {
   const response = await apiClient.get('/me')
 
   return {
-    props: {},
+    props: { user: response.data },
   }
 })
