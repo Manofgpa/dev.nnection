@@ -1,0 +1,25 @@
+[
+
+    {
+    "post": {
+        "userName": "Ailton Rafael",
+        "message": "Hello, dears",
+        "image": "https://images.unsplash.com/photo-1615789591457-74a63395c990?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZG9tZXN0aWMlMjBjYXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+        "avatar": "https://images.unsplash.com/photo-1615789591457-74a63395c990?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZG9tZXN0aWMlMjBjYXR8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80", 
+        "likes": {
+            "count": 100,
+            "users": [
+                {"name": "Kity"},
+                {"name": "Andrew"},
+                {"name": "Paul"},
+                {"name": "Mary"},
+                {"name": "Luc"}
+            ]
+        },
+        "timestamp": "4 hours",
+        "github": "",
+        "linkedin": "",
+        "tags": ["funny", "mark", "lol"]
+        }
+    }
+]
