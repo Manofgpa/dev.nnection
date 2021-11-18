@@ -58,16 +58,19 @@ export const InputPostBox = ({ username }: InputPostBoxProps) => {
       <Input
         borderRadius={20}
         placeholder="Make a post"
-        p="8"
+        h={'100%'}
         name="makePost"
         type="text"
         bg="gray.50"
         fontSize="20"
         cursor="pointer"
+        _hover={{
+          border: '1px solid green',
+        }}
         onClick={onOpen}
       />
       <Stack direction="row" justify="space-evenly" p={4}>
-        <Box>
+        {/* <Box>
           <Button p={8}>
             <Icon as={AiFillGithub} fontSize="35" />
             <Text>Project</Text>
@@ -84,13 +87,7 @@ export const InputPostBox = ({ username }: InputPostBoxProps) => {
             <Icon as={HiOutlinePhotograph} fontSize="35" />
             <Text>Photo</Text>
           </Button>
-        </Box>
-        <Box>
-          <Button p={8}>
-            <Icon as={HiOutlinePhotograph} fontSize="35" />
-            Post
-          </Button>
-        </Box>
+        </Box> */}
       </Stack>
       <PostModal
         isOpen={isOpen}
