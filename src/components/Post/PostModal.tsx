@@ -17,6 +17,10 @@ import {
   Stack,
   Badge,
   Checkbox,
+  FormErrorMessage,
+  Alert,
+  CloseButton,
+  AlertTitle,
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
@@ -42,7 +46,7 @@ export const PostModal = ({
 }: PostModalProps) => {
   const schema = yup
     .object({
-      message: yup.string().required(),
+      message: yup.string().required('This field is required.'),
       github: yup
         .string()
         .matches(
@@ -121,14 +125,17 @@ export const PostModal = ({
               ))}
             </Box>
           </Flex>
+          {!!errors.message && (
+            <Alert status="error" mb={2}>
+              <AlertTitle>{errors.message.message}</AlertTitle>
+            </Alert>
+          )}
           <Textarea
             variant="filled"
             h="200"
             {...register('message')}
             placeholder={`What's on your mind, ${username.split(' ')[0]}?`}
           />
-          {errors.message && <span>This field is required</span>}
-
           <Flex mt={4} justify="space-between">
             <Button id="github_toggle" onClick={handleClick}>
               <Icon as={AiFillGithub} id="github_toggle" fontSize="35" />
@@ -145,15 +152,14 @@ export const PostModal = ({
               placeholder="Github project url"
               {...register('github')}
               hidden={buttonsVisibility.github_toggle}
+              error={errors.github}
             />
-            {errors.github && <span>This field is required</span>}
             <Input
               placeholder="Linkedin post url"
               hidden={buttonsVisibility.linkedin_toggle}
               {...register('linkedin')}
+              error={errors.linkedin}
             />
-            {errors.linkedin && <span>This fielsd is required</span>}
-
             <Input
               placeholder="Photo url"
               hidden={buttonsVisibility.image_toggle}
