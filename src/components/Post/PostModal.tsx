@@ -27,6 +27,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { toast } from 'react-toastify'
+import { colors, tags } from '../../utils/tags'
 
 type PostModalProps = {
   isOpen: boolean
@@ -86,28 +87,6 @@ export const PostModal = ({
       [e.target.id]: !buttonsVisibility[e.target.id],
     })
   }
-
-  const tags = [
-    'react',
-    'js',
-    'funny',
-    'c',
-    'help',
-    'python',
-    'ironhack',
-    'safadeza',
-  ]
-
-  const colors = [
-    'blue',
-    'green',
-    'pink',
-    'purple',
-    '',
-    'yellow',
-    'orange',
-    'red',
-  ]
 
   return (
     <Modal onClose={onClose} isOpen={isOpen} isCentered>
