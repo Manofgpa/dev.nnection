@@ -47,6 +47,6 @@ export const getServerSideProps = withSSRAuth(async ctx => {
   const posts = await api.get('/posts')
 
   return {
-    props: { user: response.data, posts },
+    props: { user: response.data, posts: posts.data },
   }
 })

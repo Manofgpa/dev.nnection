@@ -20,11 +20,11 @@ export const TagbarPostSection = ({ sections }: TagbarPostSectionProps) => {
   return (
     <>
       {sections.map(section => (
-        <Box w='90%' bg='#FFFFFF' mt='5' borderRadius={10} key={section.title}>
-          <Stack spacing='4' mt='4' align='stretch' fontSize='20'>
-            <Box p='2'>
+        <Box w="90%" bg="#FFFFFF" mt="5" borderRadius={10} key={section.title}>
+          <Stack spacing="4" mt="4" align="stretch" fontSize="20">
+            <Box p="2">
               <Link>
-                <Text fontWeight='medium'>#{section.title}</Text>
+                <Text fontWeight="medium">#{section.title}</Text>
               </Link>
             </Box>
             <Divider />

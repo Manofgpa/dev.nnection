@@ -1,12 +1,6 @@
-import {
-  Box,
-  Stack,
-  Text,
-  Divider,
-  Link,
-  useBreakpointValue,
-} from '@chakra-ui/react'
-import { TagbarPost } from './TagbarPost'
+import { Box, Stack, useBreakpointValue } from '@chakra-ui/react'
+import { useEffect } from 'react'
+import { api } from '../../services/apiClient'
 import { TagbarPostSection } from './TagbarPostSection'
 
 type User = {
@@ -35,6 +29,12 @@ export const TagBar = ({ posts }: TagbarProps) => {
     base: false,
     lg: true,
   })
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await api.get(`/posts/${tag}`)
+    }
+  }, [])
 
   const sections = [
     {
