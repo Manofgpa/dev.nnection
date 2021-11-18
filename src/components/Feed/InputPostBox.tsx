@@ -46,8 +46,6 @@ export const InputPostBox = ({ username }: InputPostBoxProps) => {
       tags,
     }
 
-    console.log(post)
-
     try {
       const response = await api.post('http://localhost:3001/newPost', post)
     } catch (error) {

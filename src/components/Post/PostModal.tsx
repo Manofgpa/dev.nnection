@@ -18,6 +18,7 @@ import {
   Checkbox,
   Alert,
   AlertTitle,
+  Spinner,
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
@@ -51,12 +52,19 @@ export const PostModal = ({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   })
 
-  const onSubmit = data => finalSubmit(data)
+  const onSubmit = async data => {
+    finalSubmit(data)
+    if (!isSubmitting) {
+      onClose()
+      reset()
+    }
+  }
 
   const [buttonsVisibility, setButtonsVisibility] = useState({
     linkedin_toggle: true,
@@ -168,7 +176,7 @@ export const PostModal = ({
             _hover={{
               bgColor: 'green.600',
             }}>
-            Post
+            {isSubmitting ? <Spinner /> : 'Post'}
           </Button>
         </ModalBody>
       </ModalContent>
