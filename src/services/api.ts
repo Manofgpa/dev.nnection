@@ -15,7 +15,7 @@ export const setupAPIClient = (ctx = undefined) => {
   let cookies = parseCookies(ctx)
 
   const api = axios.create({
-    baseURL: 'https://devnnection.herokuapp.com/',
+    baseURL: 'http://localhost:3001/',
     headers: {
       Authorization: `Bearer ${cookies['devnnection.token']}`,
     },
