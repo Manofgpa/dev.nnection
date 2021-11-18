@@ -22,35 +22,19 @@ export const InputPostBox = ({ username }: InputPostBoxProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { user } = useContext(AuthContext)
 
-  const finalSubmit = async data => {
-    if (!data) return
-
-    const { message, github, linkedin, image } = data
-
-    const tags = Object.keys(data).filter(
-      x =>
-        data[x] !== false && data[x] !== '' && x !== 'message' && x !== 'image'
-    )
+  const handleSubmit = async postMessage => {
+    if (!postMessage) return
 
     const post = {
-      message,
-      user_email: user.email,
+      message: postMessage,
+      user: `${user?.first_name} ${user?.last_name}`,
       timestamp: new Date(),
-      likes: {
-        count: 0,
-        users: [],
-      },
-      github,
-      linkedin,
-      image,
-      tags,
     }
 
-    try {
-      const response = await api.post('http://localhost:3001/newPost', post)
-    } catch (error) {
-      console.log(error)
-    }
+    const response = await api.post(
+      'http://localhost:3000/api/post/create',
+      post
+    )
   }
 
   return (
@@ -94,7 +78,7 @@ export const InputPostBox = ({ username }: InputPostBoxProps) => {
         onClose={onClose}
         onOpen={onOpen}
         username={username}
-        finalSubmit={finalSubmit}
+        handleSubmit={handleSubmit}
       />
     </>
   )
