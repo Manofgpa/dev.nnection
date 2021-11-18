@@ -8,7 +8,6 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Text,
@@ -17,15 +16,13 @@ import {
   Stack,
   Badge,
   Checkbox,
-  FormErrorMessage,
   Alert,
-  CloseButton,
   AlertTitle,
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
 import { HiOutlinePhotograph } from 'react-icons/hi'
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
@@ -44,25 +41,22 @@ export const PostModal = ({
   username,
   finalSubmit,
 }: PostModalProps) => {
-  const schema = yup
-    .object({
-      message: yup.string().required('This field is required.'),
-      github: yup
-        .string()
-        .matches(
-          /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/
-        ),
-    })
-    .required()
+  const schema = yup.object({
+    message: yup.string().required('This field is required.'),
+    github: yup.string(),
+    linkedin: yup.string(),
+    image: yup.string(),
+  })
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>({
+  } = useForm({
     resolver: yupResolver(schema),
   })
-  const onSubmit: SubmitHandler<Inputs> = data => finalSubmit(data)
+
+  const onSubmit = data => finalSubmit(data)
 
   const [buttonsVisibility, setButtonsVisibility] = useState({
     linkedin_toggle: true,
@@ -152,13 +146,11 @@ export const PostModal = ({
               placeholder="Github project url"
               {...register('github')}
               hidden={buttonsVisibility.github_toggle}
-              error={errors.github}
             />
             <Input
               placeholder="Linkedin post url"
               hidden={buttonsVisibility.linkedin_toggle}
               {...register('linkedin')}
-              error={errors.linkedin}
             />
             <Input
               placeholder="Photo url"
@@ -172,7 +164,10 @@ export const PostModal = ({
             color="black"
             fontWeight="bold"
             bgColor="green.500"
-            w="100%">
+            w="100%"
+            _hover={{
+              bgColor: 'green.600',
+            }}>
             Post
           </Button>
         </ModalBody>

@@ -27,6 +27,11 @@ export const InputPostBox = ({ username }: InputPostBoxProps) => {
 
     const { message, github, linkedin, image } = data
 
+    const tags = Object.keys(data).filter(
+      x =>
+        data[x] !== false && data[x] !== '' && x !== 'message' && x !== 'image'
+    )
+
     const post = {
       message,
       user_email: user.email,
@@ -38,8 +43,10 @@ export const InputPostBox = ({ username }: InputPostBoxProps) => {
       github,
       linkedin,
       image,
-      tags: [],
+      tags,
     }
+
+    console.log(post)
 
     try {
       const response = await api.post('http://localhost:3001/newPost', post)
