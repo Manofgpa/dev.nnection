@@ -26,6 +26,7 @@ import { HiOutlinePhotograph } from 'react-icons/hi'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import { toast } from 'react-toastify'
 
 type PostModalProps = {
   isOpen: boolean
@@ -59,10 +60,15 @@ export const PostModal = ({
   })
 
   const onSubmit = async data => {
-    finalSubmit(data)
-    if (!isSubmitting) {
-      onClose()
-      reset()
+    try {
+      finalSubmit(data)
+      if (!isSubmitting) {
+        onClose()
+        reset()
+        toast.success(`${username}, your post was successfully created!`)
+      }
+    } catch (error) {
+      toast.error(`Error creating your post!`)
     }
   }
 
