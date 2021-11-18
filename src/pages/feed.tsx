@@ -10,6 +10,7 @@ type HomeProps = {
   user: {
     first_name: string
     last_name: string
+    email: string
   }
 }
 export default function Home({ user }: HomeProps) {
