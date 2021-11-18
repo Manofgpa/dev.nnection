@@ -22,20 +22,22 @@ export const InputPostBox = ({ username }: InputPostBoxProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { user } = useContext(AuthContext)
 
-  const handleSubmit = async postMessage => {
-    if (!postMessage) return
+  const finalSubmit = async data => {
+    if (!data) return
+
+    const { message, github, linkedin, image } = data
 
     const post = {
-      message: postMessage,
+      message,
       user_email: user.email,
       timestamp: new Date(),
       likes: {
         count: 0,
         users: [],
       },
-      github: '',
-      linkedin: '',
-      image: '',
+      github,
+      linkedin,
+      image,
       tags: [],
     }
 
@@ -90,7 +92,7 @@ export const InputPostBox = ({ username }: InputPostBoxProps) => {
         onClose={onClose}
         onOpen={onOpen}
         username={username}
-        handleSubmit={handleSubmit}
+        finalSubmit={finalSubmit}
       />
     </>
   )
