@@ -9,7 +9,28 @@ import {
 import { TagbarPost } from './TagbarPost'
 import { TagbarPostSection } from './TagbarPostSection'
 
-export const TagBar = () => {
+type User = {
+  first_name: string
+  last_name: string
+}
+
+interface TagbarProps {
+  posts: {
+    message: string
+    user: User
+    timestamp: Date
+    likes: {
+      count: number
+      users: User[]
+    }
+    github: string
+    linkedin: string
+    image: string
+    tags: string[]
+  }[]
+}
+
+export const TagBar = ({ posts }: TagbarProps) => {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
@@ -56,15 +77,15 @@ export const TagBar = () => {
     <>
       {isWideVersion && (
         <Box
-          as='aside'
-          bg='gray.200'
-          w='20%'
-          position='sticky'
+          as="aside"
+          bg="gray.200"
+          w="20%"
+          position="sticky"
           // right='0'
           // top='20'
           // h='100vh'
         >
-          <Stack spacing='4' align='center'>
+          <Stack spacing="4" align="center">
             <TagbarPostSection sections={sections} />
           </Stack>
         </Box>

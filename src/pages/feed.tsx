@@ -4,6 +4,7 @@ import { Header } from '../components/Header'
 import { Sidebar } from '../components/Sidebar'
 import { TagBar } from '../components/Tagbar'
 import { setupAPIClient } from '../services/api'
+import { api } from '../services/apiClient'
 import { withSSRAuth } from '../utils/withSSRAuth'
 
 type HomeProps = {
@@ -13,7 +14,7 @@ type HomeProps = {
     email: string
   }
 }
-export default function Home({ user }: HomeProps) {
+export default function Home({ user, posts }: HomeProps) {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
@@ -33,7 +34,7 @@ export default function Home({ user }: HomeProps) {
             <Feed user={user} />
           </Flex>
         )}
-        <TagBar />
+        <TagBar posts={posts} />
       </Flex>
     </>
   )
@@ -43,7 +44,9 @@ export const getServerSideProps = withSSRAuth(async ctx => {
   const apiClient = setupAPIClient(ctx)
   const response = await apiClient.get('/me')
 
+  const posts = await api.get('/posts')
+
   return {
-    props: { user: response.data },
+    props: { user: response.data, posts },
   }
 })
