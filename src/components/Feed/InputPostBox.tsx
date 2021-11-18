@@ -27,14 +27,23 @@ export const InputPostBox = ({ username }: InputPostBoxProps) => {
 
     const post = {
       message: postMessage,
-      user: `${user?.first_name} ${user?.last_name}`,
+      user_email: user.email,
       timestamp: new Date(),
+      likes: {
+        count: 0,
+        users: [],
+      },
+      github: '',
+      linkedin: '',
+      image: '',
+      tags: [],
     }
 
-    const response = await api.post(
-      'http://localhost:3000/api/post/create',
-      post
-    )
+    try {
+      const response = await api.post('http://localhost:3001/newPost', post)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

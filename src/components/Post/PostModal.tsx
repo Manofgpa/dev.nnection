@@ -15,8 +15,10 @@ import {
   Icon,
   Textarea,
   useDisclosure,
+  Switch,
+  Stack,
 } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
 import { HiOutlinePhotograph } from 'react-icons/hi'
 
@@ -35,10 +37,24 @@ export const PostModal = ({
   username,
   handleSubmit,
 }: PostModalProps) => {
-  const [value, setValue] = React.useState('')
+  const [value, setValue] = useState('')
+  const [buttonsVisibility, setButtonsVisibility] = useState({
+    linkedin: true,
+    github: true,
+    photo: true,
+  })
 
   const handleInputChange = e => {
     setValue(e.target.value)
+  }
+
+  const handleClick = e => {
+    console.log(e.target.id)
+
+    setButtonsVisibility({
+      ...buttonsVisibility,
+      [e.target.id]: !buttonsVisibility[e.target.id],
+    })
   }
 
   return (
@@ -67,15 +83,31 @@ export const PostModal = ({
             onChange={handleInputChange}
             placeholder={`What's on your mind, ${username.split(' ')[0]}?`}
           />
+          <Stack mt={2}>
+            <Input
+              placeholder="Github project url"
+              hidden={buttonsVisibility.github}
+            />
+            <Input
+              name="linkedin"
+              placeholder="Linkedin post url"
+              hidden={buttonsVisibility.linkedin}
+            />
+            <Input
+              name="photo"
+              placeholder="Photo url"
+              hidden={buttonsVisibility.photo}
+            />
+          </Stack>
           <Flex mt={2} justify="space-between">
-            <Button>
-              <Icon as={AiFillGithub} fontSize="35" />
+            <Button id="github" onClick={e => handleClick(e)}>
+              <Icon as={AiFillGithub} id="github" fontSize="35" />
             </Button>
-            <Button>
-              <Icon as={AiFillLinkedin} fontSize="35" />
+            <Button id="linkedin" onClick={e => handleClick(e)}>
+              <Icon as={AiFillLinkedin} id="linkedin" fontSize="35" />
             </Button>
-            <Button>
-              <Icon as={HiOutlinePhotograph} fontSize="35" />
+            <Button id="photo" onClick={e => handleClick(e)}>
+              <Icon as={HiOutlinePhotograph} id="photo" fontSize="35" />
             </Button>
           </Flex>
         </ModalBody>
@@ -87,7 +119,7 @@ export const PostModal = ({
             fontWeight="bold"
             bgColor="green.500"
             mt={4}
-            onClick={() => handleSubmit(value)}
+            onClick={e => handleSubmit(e)}
           />
         </ModalFooter>
       </ModalContent>

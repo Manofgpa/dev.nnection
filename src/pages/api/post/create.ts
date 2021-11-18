@@ -1,23 +1,21 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import mongoose from 'mongoose'
-import { connectToMongoDB, db } from '../../../services/mongodb'
+import { connectToMongoDB } from '../../../services/mongodb'
 import axios from 'axios'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const { Schema } = mongoose
-
   if (req.method === 'POST') {
     try {
       const { post } = req.body
-      const postSchema = new Schema({
-        message: String,
-        user: String,
-        timestamp: Date,
-      })
 
-      connectToMongoDB()
-
-      db.close()
+      try {
+        connectToMongoDB()
+        await newPost.save(async (err, newPostResult) => {
+          console.log('Post created', newPostResult)
+          res.end('New post created!')
+        })
+      } catch (error) {
+        console.log(error)
+      }
 
       return res.status(200).json({
         post,
