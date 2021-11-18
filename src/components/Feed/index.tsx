@@ -27,6 +27,7 @@ export const Feed = ({ user }: FeedProps) => {
           <Avatar
             size="2xl"
             name={`${user?.first_name} ${user?.last_name}`}
+            // TODO: Dynamic picture
             src="https://www.github.com/manofgpa.png"
             alignSelf="center"
             mr="4"

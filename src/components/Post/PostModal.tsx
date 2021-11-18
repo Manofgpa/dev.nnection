@@ -73,14 +73,16 @@ export const PostModal = ({
   }
 
   const [buttonsVisibility, setButtonsVisibility] = useState({
-    linkedin_toggle: true,
-    github_toggle: true,
-    image_toggle: true,
+    linkedin_toggle: false,
+    github_toggle: false,
+    image_toggle: false,
   })
 
   const handleClick = e => {
     setButtonsVisibility({
-      ...buttonsVisibility,
+      linkedin_toggle: false,
+      github_toggle: false,
+      image_toggle: false,
       [e.target.id]: !buttonsVisibility[e.target.id],
     })
   }
@@ -159,16 +161,16 @@ export const PostModal = ({
             <Input
               placeholder="Github project url"
               {...register('github')}
-              hidden={buttonsVisibility.github_toggle}
+              hidden={!buttonsVisibility.github_toggle}
             />
             <Input
               placeholder="Linkedin post url"
-              hidden={buttonsVisibility.linkedin_toggle}
+              hidden={!buttonsVisibility.linkedin_toggle}
               {...register('linkedin')}
             />
             <Input
               placeholder="Photo url"
-              hidden={buttonsVisibility.image_toggle}
+              hidden={!buttonsVisibility.image_toggle}
               {...register('image')}
             />
           </Stack>
