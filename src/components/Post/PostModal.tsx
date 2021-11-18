@@ -19,7 +19,6 @@ import {
 import React from 'react'
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
 import { HiOutlinePhotograph } from 'react-icons/hi'
-import { GitHubModal } from './GitHubModal'
 
 type PostModalProps = {
   isOpen: boolean
@@ -40,10 +39,6 @@ export const PostModal = ({
 
   const handleInputChange = e => {
     setValue(e.target.value)
-  }
-
-  const handleGitHubModal = e => {
-      console.log(e.target)
   }
 
   return (
@@ -73,7 +68,7 @@ export const PostModal = ({
             placeholder={`What's on your mind, ${username.split(' ')[0]}?`}
           />
           <Flex mt={2} justify="space-between">
-            <Button onClick={handleGitHubModal}>
+            <Button>
               <Icon as={AiFillGithub} fontSize="35" />
             </Button>
             <Button>

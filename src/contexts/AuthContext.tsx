@@ -83,7 +83,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       Router.push('/feed')
     } catch (error) {
       console.log(error)
-      return error.response.data
+      return error.response?.data
     }
   }
 
