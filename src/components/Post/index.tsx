@@ -15,10 +15,10 @@ interface PostProps {
   avatar: string
   userName: string
   image?: string
-  text: string
-  hour: string
+  message: string
+  timestamp: string
   likes: number
-  comments: number
+  // comments: number
   tags: string[]
 }
 
@@ -26,10 +26,10 @@ export const Post = ({
   userName,
   avatar,
   image,
-  text,
-  hour,
+  message,
+  timestamp,
   likes,
-  comments,
+  // comments,
   tags,
 }: PostProps) => {
   return (
@@ -44,7 +44,7 @@ export const Post = ({
             <Text>{userName}</Text>
           </Link>
           <Link>
-            <Text>{hour} ago</Text>
+            <Text>{timestamp} ago</Text>
           </Link>
         </Flex>
         <Box ml="auto">
@@ -61,7 +61,7 @@ export const Post = ({
         </Box>
       </Flex>
       <Box p="2">
-        <Text>{text}</Text>
+        <Text>{message}</Text>
       </Box>
       <Box align="center">
         <Image src={image} />
@@ -71,7 +71,7 @@ export const Post = ({
           {likes}
           <Icon ml="0.25" as={BiLike} />
         </Box>
-        <Box m="2">{`${comments} Comments`}</Box>
+        {/* <Box m="2">{`${comments} Comments`}</Box> */}
       </Flex>
       <Flex justify="space-around">
         <Button w="50%">

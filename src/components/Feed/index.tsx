@@ -1,24 +1,47 @@
 import { Box, Flex, Avatar, Stack, HStack, Text, Link } from '@chakra-ui/react'
-import { Post } from '../Post'
+import { Post as PostComponent } from '../Post'
 import { InputPostBox } from './InputPostBox'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
+import { timeSince } from '../../utils/timeSince'
+
+type User = {
+  first_name: string
+  last_name: string
+  email: string
+}
+
+type Post = {
+  message: string
+  user: User
+  timestamp: Date
+  likes: {
+    count: number
+    users: User[]
+  }
+  github: string
+  linkedin: string
+  image: string
+  tags: string[]
+}
 
 export const Feed = ({ user }: FeedProps) => {
-  const urlAPI: string =
-    'https://raw.githubusercontent.com/AiltonRafael/ironbeers/main/db.json'
+  const urlAPI = 'https://devnnection.herokuapp.com/posts'
 
   const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
+
+  console.log(posts)
 
   useEffect(() => {
     axios
-      .get(urlAPI)
+      .get<Post[]>(urlAPI)
       .then(response => {
-        return setPosts({ ...response.data }), setLoading(false)
+        return setPosts(response.data), setIsLoading(false)
       })
       .catch(err => console.error(err))
   }, [])
+
   return (
     <Flex direction="column" mx="auto" p={['0', '0', '4']}>
       <Flex bg="gray.200" p="4" borderRadius={10} direction="column">
@@ -50,25 +73,20 @@ export const Feed = ({ user }: FeedProps) => {
         </HStack>
       </Flex>
       <Stack spacing="4" mt="5">
-        {loading
-          ? null
-          : Object.values(posts).map(currentPost => {
-              return Object.values(currentPost).map(currentPostInfo => {
-                return (
-                  <Post
-                    key={currentPostInfo['id']}
-                    image={currentPostInfo['image']}
-                    text={currentPostInfo['message']}
-                    userName={currentPostInfo['userName']}
-                    avatar={currentPostInfo['avatar']}
-                    hour={currentPostInfo['timestamp']}
-                    likes={currentPostInfo['likes']['count']}
-                    comments={currentPostInfo['likes']['users'].length}
-                    tags={currentPostInfo['tags']}
-                  />
-                )
-              })
-            })}
+        {!isLoading &&
+          posts?.map(post => (
+            <PostComponent
+              key={post['_id']}
+              image={post['image']}
+              message={post['message']}
+              userName={`${post.user.first_name} ${post.user.last_name}`}
+              avatar={post['avatar']}
+              timestamp={timeSince(post['timestamp'])}
+              likes={post['likes']['count']}
+              // comments={post['likes']['users'].length}
+              tags={post['tags']}
+            />
+          ))}
       </Stack>
     </Flex>
   )

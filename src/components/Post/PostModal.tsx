@@ -70,6 +70,7 @@ export const PostModal = ({
       }
     } catch (error) {
       toast.error(`Error creating your post!`)
+      console.log(error)
     }
   }
 
