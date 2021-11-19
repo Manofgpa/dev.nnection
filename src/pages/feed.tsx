@@ -7,13 +7,29 @@ import { setupAPIClient } from '../services/api'
 import { api } from '../services/apiClient'
 import { withSSRAuth } from '../utils/withSSRAuth'
 
-type HomeProps = {
-  user: {
-    first_name: string
-    last_name: string
-    email: string
-  }
+type User = {
+  first_name: string
+  last_name: string
+  email: string
 }
+
+interface HomeProps {
+  user: User
+  posts: {
+    message: string
+    user: User
+    timestamp: Date
+    likes: {
+      count: number
+      users: User[]
+    }
+    github: string
+    linkedin: string
+    image: string
+    tags: string[]
+  }[]
+}
+
 export default function Home({ user, posts }: HomeProps) {
   const isWideVersion = useBreakpointValue({
     base: false,

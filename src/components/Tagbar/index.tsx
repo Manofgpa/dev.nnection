@@ -30,11 +30,11 @@ export const TagBar = ({ posts }: TagbarProps) => {
     lg: true,
   })
 
-  useEffect(() => {
-    const getData = async () => {
-      const response = await api.get(`/posts/${tag}`)
-    }
-  }, [])
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const response = await api.get(`/posts/${tag}`)
+  //   }
+  // }, [])
 
   const sections = [
     {
