@@ -30,17 +30,33 @@ export const Feed = ({ user }: FeedProps) => {
 
   const [posts, setPosts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [refreshInterval, setRefreshInterval] = useState(10000)
 
-  console.log(posts)
-
-  useEffect(() => {
+  const fetchData = () => {
     axios
       .get<Post[]>(urlAPI)
       .then(response => {
-        return setPosts(response.data), setIsLoading(false)
+        const sortedPosts = [...response.data]
+
+        setPosts(
+          sortedPosts.sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1))
+        )
+
+        setIsLoading(false)
       })
       .catch(err => console.error(err))
+  }
+
+  useEffect(() => {
+    fetchData()
   }, [])
+
+  useEffect(() => {
+    if (refreshInterval && refreshInterval > 0) {
+      const interval = setInterval(fetchData, refreshInterval)
+      return () => clearInterval(interval)
+    }
+  }, [refreshInterval])
 
   return (
     <Flex direction="column" mx="auto" p={['0', '0', '4']}>
