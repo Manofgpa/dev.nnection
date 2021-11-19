@@ -4,6 +4,7 @@ import { InputPostBox } from './InputPostBox'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { timeSince } from '../../utils/timeSince'
+import ContentLoader from 'react-content-loader'
 
 type User = {
   first_name: string
@@ -28,8 +29,8 @@ type Post = {
 export const Feed = ({ user }: FeedProps) => {
   const urlAPI = 'https://devnnection.herokuapp.com/posts'
 
-  const [posts, setPosts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [posts, setPosts] = useState([])
   const [refreshInterval, setRefreshInterval] = useState(10000)
 
   const fetchData = () => {
@@ -59,7 +60,7 @@ export const Feed = ({ user }: FeedProps) => {
   }, [refreshInterval])
 
   return (
-    <Flex direction="column" mx="auto" p={['0', '0', '4']}>
+    <Flex direction="column" mx="auto" p={['0', '0', '4']} w="100%">
       <Flex bg="gray.200" p="4" borderRadius={10} direction="column">
         <Flex>
           <Avatar
@@ -89,8 +90,53 @@ export const Feed = ({ user }: FeedProps) => {
         </HStack>
       </Flex>
       <Stack spacing="4" mt="5">
-        {!isLoading &&
-          posts?.map(post => (
+        {isLoading ? (
+          <>
+            <ContentLoader
+              speed={2}
+              width={800}
+              height={400}
+              viewBox="0 0 476 124"
+              backgroundColor="#ccc"
+              foregroundColor="#227c38">
+              <rect x="48" y="8" rx="3" ry="3" width="88" height="6" />
+              <rect x="48" y="26" rx="3" ry="3" width="52" height="6" />
+              <rect x="0" y="56" rx="3" ry="3" width="410" height="6" />
+              <rect x="0" y="72" rx="3" ry="3" width="380" height="6" />
+              <rect x="0" y="88" rx="3" ry="3" width="178" height="6" />
+              <circle cx="20" cy="20" r="20" />
+            </ContentLoader>
+            <ContentLoader
+              speed={2}
+              width={800}
+              height={400}
+              viewBox="0 0 476 124"
+              backgroundColor="#ccc"
+              foregroundColor="#227c38">
+              <rect x="48" y="8" rx="3" ry="3" width="88" height="6" />
+              <rect x="48" y="26" rx="3" ry="3" width="52" height="6" />
+              <rect x="0" y="56" rx="3" ry="3" width="410" height="6" />
+              <rect x="0" y="72" rx="3" ry="3" width="380" height="6" />
+              <rect x="0" y="88" rx="3" ry="3" width="178" height="6" />
+              <circle cx="20" cy="20" r="20" />
+            </ContentLoader>
+            <ContentLoader
+              speed={2}
+              width={800}
+              height={400}
+              viewBox="0 0 476 124"
+              backgroundColor="#ccc"
+              foregroundColor="#227c38">
+              <rect x="48" y="8" rx="3" ry="3" width="88" height="6" />
+              <rect x="48" y="26" rx="3" ry="3" width="52" height="6" />
+              <rect x="0" y="56" rx="3" ry="3" width="410" height="6" />
+              <rect x="0" y="72" rx="3" ry="3" width="380" height="6" />
+              <rect x="0" y="88" rx="3" ry="3" width="178" height="6" />
+              <circle cx="20" cy="20" r="20" />
+            </ContentLoader>
+          </>
+        ) : (
+          posts.map(post => (
             <PostComponent
               key={post['_id']}
               image={post['image']}
@@ -102,7 +148,8 @@ export const Feed = ({ user }: FeedProps) => {
               // comments={post['likes']['users'].length}
               tags={post['tags']}
             />
-          ))}
+          ))
+        )}
       </Stack>
     </Flex>
   )
