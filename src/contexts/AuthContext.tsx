@@ -4,14 +4,14 @@ import { setCookie, parseCookies, destroyCookie } from 'nookies'
 import { api } from '../services/apiClient'
 
 type User = {
-  first_name: string
-  last_name: string
+  first_name?: string
+  last_name?: string
   email: string
   permissions: string[]
   roles: string[]
   token?: string
   refreshToken?: string
-  image: string
+  image?: string
 }
 
 type SignInCredentials = {
