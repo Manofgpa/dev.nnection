@@ -11,6 +11,7 @@ type User = {
   first_name: string
   last_name: string
   email: string
+  image: string
 }
 
 type Post = {
@@ -33,11 +34,30 @@ export const Feed = () => {
 
   const [isLoading, setIsLoading] = useState(true)
   const [refreshInterval, setRefreshInterval] = useState(3000)
-  const [posts, setPosts] = useState({})
+  const [posts, setPosts] = useState<Post[]>([
+    {
+      message: '',
+      user: {
+        first_name: '',
+        email: '',
+        last_name: '',
+        image: '',
+      },
+      timestamp: new Date(),
+      likes: {
+        count: 0,
+        users: [],
+      },
+      github: '',
+      linkedin: '',
+      image: '',
+      tags: [],
+    },
+  ])
 
   const fetchData = () => {
     axios
-      .get<Post[]>(urlAPI)
+      .get<{ posts: Post[] }>(urlAPI)
       .then(response => {
         const sortedPosts = [...response.data.posts]
 

@@ -34,7 +34,6 @@ export default function Home({ user, posts }: HomeProps) {
     base: false,
     lg: true,
   })
-
   return (
     <>
       <Header user={user} />
