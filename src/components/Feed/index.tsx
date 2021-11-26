@@ -2,9 +2,10 @@ import { Box, Flex, Avatar, Stack, HStack, Text, Link } from '@chakra-ui/react'
 import { Post as PostComponent } from '../Post'
 import { InputPostBox } from './InputPostBox'
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { timeSince } from '../../utils/timeSince'
 import ContentLoader from 'react-content-loader'
+import { AuthContext } from '../../contexts/AuthContext'
 
 type User = {
   first_name: string
@@ -26,18 +27,19 @@ type Post = {
   tags: string[]
 }
 
-export const Feed = ({ user }: FeedProps) => {
+export const Feed = () => {
   const urlAPI = 'https://devnnection.herokuapp.com/posts'
+  const { user } = useContext(AuthContext)
 
   const [isLoading, setIsLoading] = useState(true)
-  const [posts, setPosts] = useState([])
-  const [refreshInterval, setRefreshInterval] = useState(10000)
+  const [refreshInterval, setRefreshInterval] = useState(3000)
+  const [posts, setPosts] = useState({})
 
   const fetchData = () => {
     axios
       .get<Post[]>(urlAPI)
       .then(response => {
-        const sortedPosts = [...response.data]
+        const sortedPosts = [...response.data.posts]
 
         setPosts(
           sortedPosts.sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1))
@@ -60,24 +62,24 @@ export const Feed = ({ user }: FeedProps) => {
   }, [refreshInterval])
 
   return (
-    <Flex direction="column" mx="auto" p={['0', '0', '4']} w="100%">
-      <Flex bg="gray.200" p="4" borderRadius={10} direction="column">
+    <Flex direction='column' mx='auto' p={['0', '0', '4']} w='100%'>
+      <Flex bg='gray.200' p='4' borderRadius={10} direction='column'>
         <Flex>
           <Avatar
-            size="2xl"
+            size='2xl'
             name={`${user?.first_name} ${user?.last_name}`}
             // TODO: Dynamic picture
-            src="https://www.github.com/manofgpa.png"
-            alignSelf="center"
-            mr="4"
+            src={user?.image}
+            alignSelf='center'
+            mr='4'
           />
-          <Box as="label" w="100%">
+          <Box as='label' w='100%'>
             <InputPostBox username={`${user?.first_name} ${user?.last_name}`} />
           </Box>
         </Flex>
       </Flex>
       <Flex>
-        <HStack spacing="6" mt="6" fontSize="20" fontWeight="bold">
+        <HStack spacing='6' mt='6' fontSize='20' fontWeight='bold'>
           <Link>
             <Text>Feed</Text>
           </Link>
@@ -89,60 +91,60 @@ export const Feed = ({ user }: FeedProps) => {
           </Link>
         </HStack>
       </Flex>
-      <Stack spacing="4" mt="5">
+      <Stack spacing='4' mt='5'>
         {isLoading ? (
           <>
             <ContentLoader
               speed={2}
               width={800}
               height={400}
-              viewBox="0 0 476 124"
-              backgroundColor="#ccc"
-              foregroundColor="#227c38">
-              <rect x="48" y="8" rx="3" ry="3" width="88" height="6" />
-              <rect x="48" y="26" rx="3" ry="3" width="52" height="6" />
-              <rect x="0" y="56" rx="3" ry="3" width="410" height="6" />
-              <rect x="0" y="72" rx="3" ry="3" width="380" height="6" />
-              <rect x="0" y="88" rx="3" ry="3" width="178" height="6" />
-              <circle cx="20" cy="20" r="20" />
+              viewBox='0 0 476 124'
+              backgroundColor='#ccc'
+              foregroundColor='#227c38'>
+              <rect x='48' y='8' rx='3' ry='3' width='88' height='6' />
+              <rect x='48' y='26' rx='3' ry='3' width='52' height='6' />
+              <rect x='0' y='56' rx='3' ry='3' width='410' height='6' />
+              <rect x='0' y='72' rx='3' ry='3' width='380' height='6' />
+              <rect x='0' y='88' rx='3' ry='3' width='178' height='6' />
+              <circle cx='20' cy='20' r='20' />
             </ContentLoader>
             <ContentLoader
               speed={2}
               width={800}
               height={400}
-              viewBox="0 0 476 124"
-              backgroundColor="#ccc"
-              foregroundColor="#227c38">
-              <rect x="48" y="8" rx="3" ry="3" width="88" height="6" />
-              <rect x="48" y="26" rx="3" ry="3" width="52" height="6" />
-              <rect x="0" y="56" rx="3" ry="3" width="410" height="6" />
-              <rect x="0" y="72" rx="3" ry="3" width="380" height="6" />
-              <rect x="0" y="88" rx="3" ry="3" width="178" height="6" />
-              <circle cx="20" cy="20" r="20" />
+              viewBox='0 0 476 124'
+              backgroundColor='#ccc'
+              foregroundColor='#227c38'>
+              <rect x='48' y='8' rx='3' ry='3' width='88' height='6' />
+              <rect x='48' y='26' rx='3' ry='3' width='52' height='6' />
+              <rect x='0' y='56' rx='3' ry='3' width='410' height='6' />
+              <rect x='0' y='72' rx='3' ry='3' width='380' height='6' />
+              <rect x='0' y='88' rx='3' ry='3' width='178' height='6' />
+              <circle cx='20' cy='20' r='20' />
             </ContentLoader>
             <ContentLoader
               speed={2}
               width={800}
               height={400}
-              viewBox="0 0 476 124"
-              backgroundColor="#ccc"
-              foregroundColor="#227c38">
-              <rect x="48" y="8" rx="3" ry="3" width="88" height="6" />
-              <rect x="48" y="26" rx="3" ry="3" width="52" height="6" />
-              <rect x="0" y="56" rx="3" ry="3" width="410" height="6" />
-              <rect x="0" y="72" rx="3" ry="3" width="380" height="6" />
-              <rect x="0" y="88" rx="3" ry="3" width="178" height="6" />
-              <circle cx="20" cy="20" r="20" />
+              viewBox='0 0 476 124'
+              backgroundColor='#ccc'
+              foregroundColor='#227c38'>
+              <rect x='48' y='8' rx='3' ry='3' width='88' height='6' />
+              <rect x='48' y='26' rx='3' ry='3' width='52' height='6' />
+              <rect x='0' y='56' rx='3' ry='3' width='410' height='6' />
+              <rect x='0' y='72' rx='3' ry='3' width='380' height='6' />
+              <rect x='0' y='88' rx='3' ry='3' width='178' height='6' />
+              <circle cx='20' cy='20' r='20' />
             </ContentLoader>
           </>
         ) : (
           posts.map(post => (
             <PostComponent
               key={post['_id']}
+              avatar={post.user?.image}
               image={post['image']}
               message={post['message']}
-              userName={`${post.user.first_name} ${post.user.last_name}`}
-              avatar={post['avatar']}
+              userName={`${post.user?.first_name} ${post.user?.last_name}`}
               timestamp={timeSince(post['timestamp'])}
               likes={post['likes']['count']}
               // comments={post['likes']['users'].length}

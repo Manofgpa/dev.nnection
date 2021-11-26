@@ -11,6 +11,7 @@ type User = {
   roles: string[]
   token?: string
   refreshToken?: string
+  image: string
 }
 
 type SignInCredentials = {
@@ -41,9 +42,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       api
         .get<User>('/me')
         .then(res => {
-          const { email, permissions, roles, first_name, last_name } = res.data
+          const { email, permissions, roles, first_name, last_name, image } =
+            res.data
 
-          setUser({ email, permissions, roles, first_name, last_name })
+          setUser({ email, permissions, roles, first_name, last_name, image })
         })
         .catch(() => {
           signOut()

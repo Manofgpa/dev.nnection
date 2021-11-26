@@ -16,6 +16,7 @@ import { Input } from '../Form/Input'
 import { api } from '../../services/apiClient'
 import { toast } from 'react-toastify'
 import { useRef } from 'react'
+import { getProfileImage } from '../../utils/profilesMockImages'
 
 type CreateUserFormData = {
   first_name: string
@@ -47,6 +48,7 @@ export const SignupModal = ({ isOpen, onClose }) => {
         email,
         password,
         birthday,
+        image: getProfileImage(),
       })
 
       toast.success(`${last_name}, your account was created, please login!`)
@@ -74,59 +76,59 @@ export const SignupModal = ({ isOpen, onClose }) => {
         isOpen={isOpen}
         onClose={onClose}
         isCentered
-        size="2xl"
+        size='2xl'
         initialFocusRef={initialRef}>
         <ModalOverlay />
-        <ModalContent as="form" onSubmit={handleSubmit(handleCreateUser)}>
+        <ModalContent as='form' onSubmit={handleSubmit(handleCreateUser)}>
           <ModalHeader
-            fontSize="30"
-            align="center"
-            bg="gray.900"
-            color="green.500">
+            fontSize='30'
+            align='center'
+            bg='gray.900'
+            color='green.500'>
             Sign up
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <SimpleGrid minChildWidth="240px" spacing={['6', '8']} pt="8">
+            <SimpleGrid minChildWidth='240px' spacing={['6', '8']} pt='8'>
               <Input
-                name="first_name"
-                label="First Name"
+                name='first_name'
+                label='First Name'
                 {...register('first_name')}
                 error={errors.first_name}
               />
               <Input
-                name="last_name"
-                label="Last Name"
+                name='last_name'
+                label='Last Name'
                 {...register('last_name')}
                 error={errors.last_name}
               />
               <Input
-                name="email"
-                type="email"
-                label="Email"
+                name='email'
+                type='email'
+                label='Email'
                 error={errors.email}
                 {...register('email')}
               />
               <Input
-                name="birthday"
-                type="date"
-                label="Birthday"
+                name='birthday'
+                type='date'
+                label='Birthday'
                 error={errors.birthday}
                 {...register('birthday')}
               />
             </SimpleGrid>
-            <SimpleGrid minChildWidth="240px" spacing={['6', '8']} pt="8">
+            <SimpleGrid minChildWidth='240px' spacing={['6', '8']} pt='8'>
               <Input
-                name="password"
-                type="password"
-                label="Password"
+                name='password'
+                type='password'
+                label='Password'
                 error={errors.password}
                 {...register('password')}
               />
               <Input
-                name="password_confirmation"
-                type="password"
-                label="Password Confirmation"
+                name='password_confirmation'
+                type='password'
+                label='Password Confirmation'
                 error={errors.password_confirmation}
                 {...register('password_confirmation')}
               />
@@ -134,12 +136,12 @@ export const SignupModal = ({ isOpen, onClose }) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button mr="2" onClick={onClose}>
+            <Button mr='2' onClick={onClose}>
               Close
             </Button>
             <Button
-              type="submit"
-              colorScheme="green"
+              type='submit'
+              colorScheme='green'
               mr={3}
               isLoading={isSubmitting}>
               Create account
