@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Flex, Box, Text, Avatar, Button } from '@chakra-ui/react'
 import { AuthContext, signOut } from '../../contexts/AuthContext'
 
@@ -11,21 +11,22 @@ interface ProfileProps {
   }
 }
 
-export const Profile = ({ showProfileData = true, user }: ProfileProps) => {
-  const fullName = `${user?.first_name} ${user?.last_name}`
+export const Profile = ({ showProfileData = true }: ProfileProps) => {
+  const { user } = useContext(AuthContext)
+
   return (
-    <Flex align="center">
+    <Flex align='center'>
       {showProfileData && (
-        <Box mr="4" textAlign="right">
-          <Text>{fullName}</Text>
-          <Text fontSize="small">{user?.email}</Text>
+        <Box mr='4' textAlign='right'>
+          <Text>{`${user?.first_name} ${user?.last_name}`}</Text>
+          <Text fontSize='small'>{user?.email}</Text>
         </Box>
       )}
       <Avatar
-        mx="auto"
-        size="md"
-        name={fullName}
-        src="https://www.github.com/manofgpa.png"
+        mx='auto'
+        size='md'
+        name={`${user?.first_name} ${user?.last_name}`}
+        src={user?.image}
         mr={2}
       />
       <Button onClick={signOut}>Signout</Button>

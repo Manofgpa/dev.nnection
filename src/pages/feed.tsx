@@ -4,7 +4,6 @@ import { Header } from '../components/Header'
 import { Sidebar } from '../components/Sidebar'
 import { TagBar } from '../components/Tagbar'
 import { setupAPIClient } from '../services/api'
-import { api } from '../services/apiClient'
 import { withSSRAuth } from '../utils/withSSRAuth'
 
 type User = {
@@ -35,18 +34,17 @@ export default function Home({ user, posts }: HomeProps) {
     base: false,
     lg: true,
   })
-
   return (
     <>
       <Header user={user} />
       <Flex>
         <Sidebar />
         {isWideVersion ? (
-          <Flex flex="1" p="2">
+          <Flex flex='1' p='2'>
             <Feed user={user} posts={posts} />
           </Flex>
         ) : (
-          <Flex flex="1" m="4">
+          <Flex flex='1' m='4'>
             <Feed user={user} posts={posts} />
           </Flex>
         )}
@@ -60,9 +58,7 @@ export const getServerSideProps = withSSRAuth(async ctx => {
   const apiClient = setupAPIClient(ctx)
   const response = await apiClient.get('/me')
 
-  const posts = await api.get('https://devnnection.herokuapp.com/posts')
-
   return {
-    props: { user: response.data, posts: posts.data },
+    props: {},
   }
 })

@@ -34,7 +34,11 @@ export const InputPostBox = ({ username }: InputPostBoxProps) => {
 
     const post = {
       message,
-      user_email: user.email,
+      user: {
+        first_name: user.first_name,
+        last_name: user.last_name,
+        image: user.image,
+      },
       timestamp: new Date(),
       likes: {
         count: 0,
@@ -47,7 +51,7 @@ export const InputPostBox = ({ username }: InputPostBoxProps) => {
     }
 
     try {
-      const response = await api.post('http://localhost:3001/newPost', post)
+      const response = await api.post('/posts/new', post)
     } catch (error) {
       console.log(error)
     }
@@ -57,19 +61,19 @@ export const InputPostBox = ({ username }: InputPostBoxProps) => {
     <>
       <Input
         borderRadius={20}
-        placeholder="Make a post"
+        placeholder='Make a post'
         h={'100%'}
-        name="makePost"
-        type="text"
-        bg="gray.50"
-        fontSize="20"
-        cursor="pointer"
+        name='makePost'
+        type='text'
+        bg='gray.50'
+        fontSize='20'
+        cursor='pointer'
         _hover={{
           border: '1px solid green',
         }}
         onClick={onOpen}
       />
-      <Stack direction="row" justify="space-evenly" p={4}>
+      <Stack direction='row' justify='space-evenly' p={4}>
         {/* <Box>
           <Button p={8}>
             <Icon as={AiFillGithub} fontSize="35" />
